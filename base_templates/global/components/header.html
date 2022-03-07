@@ -1,0 +1,18 @@
+<header class="header">
+    <h1>Mercadinho</h1>
+    <div class="header__search">
+
+    </div>
+    <nav class="header__menu">
+        <ul>
+            <li><a href="#">Bolachas</a></li>
+            <li><a href="#">Coquinha</a></li>
+            <li><a href="#">Chocolate</a></li>
+            {% if user %}
+                {{ user.email }}
+            {% else %}
+                <li><a class="btn_login" href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

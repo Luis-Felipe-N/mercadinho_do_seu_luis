@@ -1,0 +1,26 @@
+{% extends 'global/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <main class="login center">
+        <div class="login__container">
+            <h2>Entrar no mercadinho</h2>
+
+            {% if form.errors %}
+                {{ form.errors }}
+            {% endif %}
+            <form class="form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <label>
+                        {{ field.label }}
+                        {% render_field field class="form__input" %}
+                    </label>
+                {% endfor %}
+                <button>
+                    Entrar
+                </button>
+            </form>
+        </div>
+    <main>  
+{% endblock content %}

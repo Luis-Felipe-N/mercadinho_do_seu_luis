@@ -1,0 +1,19 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+    {% include 'global/components/header.html' %}
+    <main class="home">
+        {% comment %} <div class="home__localization">
+            <div class="container">
+                <form action="{% url 'home' %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" type="search" placeholder="____-__">
+                    <button>Ok</button>
+                </form>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="content">
+        </div>
+    </main>
+{% endblock content %}
