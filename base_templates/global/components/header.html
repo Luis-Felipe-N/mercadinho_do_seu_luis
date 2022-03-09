@@ -8,7 +8,7 @@
             <li><a href="#">Bolachas</a></li>
             <li><a href="#">Coquinha</a></li>
             <li><a href="#">Chocolate</a></li>
-            {% if user %}
+            {% if user.username %}
                 {{ user.email }}
             {% else %}
                 <li><a class="btn_login" href="{% url 'login' %}">Login</a></li>

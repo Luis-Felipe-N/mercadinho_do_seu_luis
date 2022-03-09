@@ -9,8 +9,9 @@
             {% if form.errors %}
                 {{ form.errors }}
             {% endif %}
-            <form class="form">
+            <form class="form" method="post">
                 {% csrf_token %}
+                {{ message }}
                 {% for field in form %}
                     <label>
                         {{ field.label }}

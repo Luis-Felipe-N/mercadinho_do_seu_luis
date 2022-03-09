@@ -1,3 +1,4 @@
+from dataclasses import field
 from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
@@ -35,11 +36,6 @@ class RegisterForm(forms.ModelForm):
             'password'
         ]
 
-        # widgets = {
-        #     'password':
-        # }
-
-
     # Propria validação de um campo | clean_nomecampo
     def clean_password(self):
         data = self.cleaned_data.get('password')
@@ -57,3 +53,9 @@ class RegisterForm(forms.ModelForm):
             
 
         return data
+
+class LoginForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
