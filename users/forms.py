@@ -21,6 +21,10 @@ class RegisterForm(forms.ModelForm):
         }
     )
 
+    nome_vendedor = forms.CharField(
+        required=True
+    )
+
     class Meta:
         model = User
         fields = [

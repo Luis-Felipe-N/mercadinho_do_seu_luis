@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views import View
 from users.forms import RegisterForm
+from django.contrib import messages
 
 class LoginView(View):
     def get(self, request):
@@ -12,14 +13,20 @@ class LoginView(View):
 
 
 class RegisterView(View):
-    def get(self, request):
+    template_name = './users/register.html'
+
+    def get_template(self):
         form = RegisterForm()
 
         context = {
             'form': form
         }
         
-        return render(request, './users/register.html', context)
+        return render(self.request, self.template_name, context)
+
+    def get(self, request):
+        
+        return self.get_template()
 
     def post(self, request):
         form = RegisterForm(request.POST)
@@ -27,11 +34,9 @@ class RegisterView(View):
         # print(form)
 
         if form.is_valid():
-            print('Sim, este form é válido!')
-
             form.save()
+            messages.success(request, 'Conta criada com sucesso')
 
-        return render(request, './users/register.html', {
-            'form': form
-        })
+
+        return self.get_template()
 

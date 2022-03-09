@@ -7,10 +7,17 @@
             <h2>Cadastrar no mercadinho</h2>
 
             {% if form.errors %}
-                <p class="error">
+                <p class="alert__error">
                     Verifique o formulário
                 </p>                
             {% endif %} 
+            {% if messages %} 
+                {% for messagem in messages %}
+                    <p class="alert__success" role="alert">
+                        {{ messagem }}
+                    </p>
+                {% endfor %}
+            {% endif %}
 
             <form method="post" class="form">
                 {% csrf_token %}

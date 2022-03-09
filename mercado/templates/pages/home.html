@@ -13,7 +13,16 @@
             </div>
         </div> {% endcomment %}
 
-        <div class="content">
+        <div class="container">
+            {% if messages %} 
+                {% for messagem in messages %}
+                    <p class="alert__success" role="alert">
+                        {{ messagem }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+
+            {% comment %} {% include '../partials/cards.html' %} {% endcomment %}
         </div>
     </main>
 {% endblock content %}
