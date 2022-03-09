@@ -137,6 +137,11 @@ button, input, textarea {
     font-size: .7rem;
 }
 
+.form_error {
+    color: var(--color-red);
+    font-size: .8rem;
+}
+
 .error {
     padding: 1rem;
     border: 1px solid var(--color-red);
