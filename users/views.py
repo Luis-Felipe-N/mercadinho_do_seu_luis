@@ -26,7 +26,7 @@ class RegisterView(View):
 
         # print(form)
 
-        if form.is_valid:
+        if form.is_valid():
             print('Sim, este form é válido!')
 
             form.save()

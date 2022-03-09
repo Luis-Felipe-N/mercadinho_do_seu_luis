@@ -1,7 +1,27 @@
 from django.contrib.auth.models import User
 from django import forms
 
+def strong_password(password):
+    if len(password) < 8:
+        raise forms.ValidationError(
+            (
+                'Sua senha deve haver mais de 6 caracteres'
+            ),
+            code="invalid"
+        )
+
 class RegisterForm(forms.ModelForm):
+
+    password = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(),
+        validators=[strong_password],
+        error_messages = {
+            'required': 'Senha obrigatoria',
+            'invalid': 'Senha inválida'
+        }
+    )
+
     class Meta:
         model = User
         fields = [
@@ -12,11 +32,7 @@ class RegisterForm(forms.ModelForm):
             'password'
         ]
 
-        widgets = {
-            'password': forms.PasswordInput(attrs={
-                'type': 'password'
-            })
-        }
+
 
     # Propria validação de um campo | clean_nomecampo
     def clean_password(self):

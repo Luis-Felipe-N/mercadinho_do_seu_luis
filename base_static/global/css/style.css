@@ -19,6 +19,9 @@ button, input, textarea {
 
     --color-white: #FAF5FF;
     --color-black: #12121a;
+
+    --color-red: #F56565;
+    --color-red-100: #FED7D7;
 }
 
 .container {
@@ -132,4 +135,13 @@ button, input, textarea {
     color: rgba(0, 0, 0, .5);
     display: block;
     font-size: .7rem;
+}
+
+.error {
+    padding: 1rem;
+    border: 1px solid var(--color-red);
+    border-radius: 3px;
+    background-color: var(--color-red-100);
+    margin-bottom: 1rem;
+    color: var(--color-red);
 }
