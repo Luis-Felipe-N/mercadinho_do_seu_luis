@@ -11,8 +11,15 @@
             {% if user.username %}
                 {{ user.email }}
             {% else %}
-                <li><a class="btn_login" href="{% url 'login' %}">Login</a></li>
+                <li><a class="btn_login" href="{% url 'users:login' %}">Login</a></li>
             {% endif %}
         </ul>
     </nav>
 </header>
+<div class="form__cep_container">
+    <form class="form__cep">
+        <input data-formcep="input" type="text" placeholder="00000-000">
+        <button data-formcep="button" >Adicionar</button>
+    </form>
+    <p class="text__cep"></p>
+</div>

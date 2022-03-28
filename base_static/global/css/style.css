@@ -167,3 +167,9 @@ button, input, textarea {
 .home .container {
     margin-top: 2rem;
 }
+
+.fform__cep_container    {
+    display: flex;
+    gap: 2rem;
+    font-weight: 700;
+}
