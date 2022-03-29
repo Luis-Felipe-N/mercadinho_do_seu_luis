@@ -1,11 +1,12 @@
-from tabnanny import verbose
+from django.contrib.auth.models import User
 from django.db import models
 
 class Vendedor(models.Model):
-    usuario = models.OneToOneField(
-        verbose_name="Usuário",
-        on_delete=models.CASCADE
-    )
+    # usuario = models.OneToOneField(
+    #     'User', # Nâo funciona, Por que não é um model
+    #     verbose_name="Usuário",
+    #     on_delete=models.CASCADE
+    # )
 
     nome_loja = models.TextField(
         verbose_name="Nome da loja"
@@ -15,7 +16,7 @@ class Vendedor(models.Model):
         verbose_name="Nome completo",
     )
 
-    cnpj = models.IntegerField(
+    cnpj = models.TextField(
         verbose_name="CNPJ",
         blank=False,
         null=False,
@@ -27,7 +28,7 @@ class Vendedor(models.Model):
 
     )
 
-    telefone = models.IntegerField(
+    telefone = models.TextField(
         verbose_name="Telefone",
         max_length=11
     )

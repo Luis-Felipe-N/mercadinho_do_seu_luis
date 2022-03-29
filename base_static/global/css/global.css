@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+button, input, textarea {
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --color-primary-400: #9F7AEA;
+    --color-primary: #805AD5;
+    --color-primary-700: #553C9A;
+
+    --color-white: #FAF5FF;
+    --color-black: #12121a;
+
+    --color-red: #F56565;
+    --color-red-100: #FED7D7;
+
+    --color-green: #48BB78;
+    --color-green-100: #C6F6D5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_error {
+    color: var(--color-red);
+    font-size: .8rem;
+}
+
+.alert__success {
+    padding: 1rem;
+    border: 1px solid var(--color-green);
+    border-radius: 3px;
+    background-color: var(--color-green-100);
+    margin-bottom: 1rem;
+    color: var(--color-green);
+}
+
+.alert__error {
+    padding: 1rem;
+    border: 1px solid var(--color-red);
+    border-radius: 3px;
+    background-color: var(--color-red-100);
+    margin-bottom: 1rem;
+    color: var(--color-red);
+}
+
+.color__error {
+    color: var(--color-red-100);
+}

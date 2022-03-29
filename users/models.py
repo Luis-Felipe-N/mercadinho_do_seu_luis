@@ -1,61 +1,58 @@
-"""
-from django.db import models
+# from django.db import models
 
-from django.contrib.auth.models import (
-    BaseUserManager,
-    AbstractBaseUser,
-    PermissionsMixin,
-)
-
-# Create your models here.
-class UserManage( BaseUserManager ):
-    def create_user(self, email: str, password: str) -> dict:  
-
-        user = self.model(
-            email = self.normalize_email( email )
-        )
-
-        user.is_active = True
-        user.is_staff = False
-        user.is_superuser = False
-
-        user.set_password( password )
-        user.save()
-        
-        return user
+# from django.contrib.auth.models import (
+#     BaseUserManager,
+#     AbstractBaseUser,
+#     PermissionsMixin,
+# )
 
 
-class User( AbstractBaseUser ):
-    email = models.CharField(
-        verbose_name="Usuário",
-        max_length=40,
-        unique=False
-    )
+# class User( AbstractBaseUser, PermissionsMixin ):
+#     email = models.CharField(
+#         verbose_name="Email",
+#         max_length=40,
+#         unique=False
+#     )
 
-    is_active = models.BooleanField(
-        verbose_name="Usuário está ativo",
-        default=True
-    )
+#     username = models.CharField(
+#         verbose_name="Usuário",
+#         max_length=40,
+#         unique=True
+#     )
 
-    is_staff = models.BooleanField(
-        verbose_name="Usuário é da equipe de desenvolvimento",
-        default=False
-    )
+#     first_name = models.CharField(
+#         verbose_name="Primeiro nome",
+#         max_length=40,
+#     )
 
-    is_superuser = models.BooleanField(
-        verbose_name="Usuário é um super-usuário",
-        default=False
-    )
+#     last_name = models.CharField(
+#         verbose_name="Último nome",
+#         max_length=40,
+#     )
 
-    USERNAME_FIELD = 'email'
+#     is_active = models.BooleanField(
+#         verbose_name="Usuário está ativo",
+#         default=True
+#     )
 
-    objects = UserManage()
+#     is_staff = models.BooleanField(
+#         verbose_name="Usuário é da equipe de desenvolvimento",
+#         default=False
+#     )
 
-    class Meta:
-        verbose_name = "Usuário"
-        verbose_name_plural = "Usuários"
-        db_table = "usuario"
+#     is_superuser = models.BooleanField(
+#         verbose_name="Usuário é um super-usuário",
+#         default=False
+#     )
 
-    def __str__(self):
-        return self.email
-"""
+#     USERNAME_FIELD = 'username'
+
+#     objects = BaseUserManager()
+
+#     class Meta:
+#         verbose_name = "Usuário"
+#         verbose_name_plural = "Usuários"
+#         db_table = "usuario"
+
+#     def __str__(self):
+#         return self.email

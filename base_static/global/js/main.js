@@ -14,12 +14,13 @@ async function buscar(event) {
     const responseJson = await response.json()
     console.log(response)
     if (response.status == 200 ) {
-    
         const format_cep = `Endereço: ${responseJson.address}, ${responseJson.district} - ${responseJson.state}`
     
         campo_cep.textContent = format_cep
+        campo_cep.classList.remove('color__error')
     } else {
         campo_cep.textContent = responseJson.message
+        campo_cep.classList.add('color__error')
     }
 }
 
