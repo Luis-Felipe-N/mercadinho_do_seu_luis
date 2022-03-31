@@ -1,0 +1,27 @@
+.card {
+    max-width: 15rem;
+    width: 100%;
+}
+
+.card__cover {
+    max-width: 15rem;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: var(--color-secondary);
+}
+.card__cover img {
+    width: 100%;
+    
+}
+
+.card a {
+    color: var(--color-black);
+    text-decoration: none;
+}
+
+.card__info_title {
+    font-weight: 400;
+}

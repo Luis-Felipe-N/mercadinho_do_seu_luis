@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="card">
+    <a href="">
+        <div class="card__cover">
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+        </div>
+        <div class="card__info">
+            <h3 class="card__info_title">{{ produto.nome }}</h3>
+            <h3 class="card__info_price">R$ {{ produto.get_preco_formatado }}</h3>
+        </div>
+    </a>
+</div>

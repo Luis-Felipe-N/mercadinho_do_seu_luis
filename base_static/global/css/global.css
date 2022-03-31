@@ -14,11 +14,10 @@ button, input, textarea {
 }
 
 :root {
-    --color-primary-400: #9F7AEA;
     --color-primary: #805AD5;
-    --color-primary-700: #553C9A;
+    --color-secondary: #a288d6;
 
-    --color-white: #FAF5FF;
+    --color-white: #fff;
     --color-black: #12121a;
 
     --color-red: #F56565;
