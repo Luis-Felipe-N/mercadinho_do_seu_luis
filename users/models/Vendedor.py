@@ -1,12 +1,17 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import (
+    BaseUserManager,
+    AbstractBaseUser,
+    PermissionsMixin
+)
 from django.db import models
 
-class Vendedor(models.Model):
-    # usuario = models.OneToOneField(
-    #     'User', # Nâo funciona, Por que não é um model
-    #     verbose_name="Usuário",
-    #     on_delete=models.CASCADE
-    # )
+class Vendedor(AbstractBaseUser, PermissionsMixin):
+
+    username = models.OneToOneField(
+        'users.Usuario',
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     nome_loja = models.TextField(
         verbose_name="Nome da loja"
@@ -17,7 +22,7 @@ class Vendedor(models.Model):
     )
 
     cnpj = models.TextField(
-        verbose_name="CNPJ",
+        verbose_name="CNPJ sem formatação",
         blank=False,
         null=False,
         max_length=14
@@ -32,6 +37,12 @@ class Vendedor(models.Model):
         verbose_name="Telefone",
         max_length=11
     )
+
+
+
+    class Meta:
+        verbose_name = "Vendedor"
+        db_table = "vendedor"
 
     def __str__(self):
         return self.nome_completo

@@ -28,7 +28,7 @@ class Produto(models.Model):
     )
 
     vendendor = models.ForeignKey(
-        'Vendedor',
+        'users.Vendedor',
         on_delete=models.CASCADE,
     )
 
