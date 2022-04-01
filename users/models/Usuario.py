@@ -8,9 +8,9 @@ class Usuario(AbstractUser):
         unique=True
     )
 
-    is_vedendor = models.BooleanField(
+    is_vendedor = models.BooleanField(
         verbose_name="É um vendedor",
         default=False
     )
 
-    # USERNAME_FIELD = 'email'/
+    # USERNAME_FIELD = 'email'

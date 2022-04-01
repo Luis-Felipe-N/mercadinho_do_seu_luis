@@ -4,11 +4,11 @@ from mercado.models.Produto import Produto
 
 # Dá para usar o TemplateView, não vou usar porqus estou aprendendo
 class HomeView(View):
-    template_name = 'pages/home.html'
+    template_name = 'mercado/pages/home.html'
 
     def get_template(self, context):
 
-        return render(self.request, 'pages/home.html', context)
+        return render(self.request, self.template_name, context)
 
     def get(self, request):
 

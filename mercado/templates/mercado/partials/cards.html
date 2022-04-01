@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="card">
-    <a href="">
+    <a href="{% url 'mercado:produto' produto.id %}">
         <div class="card__cover">
             <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
         </div>
@@ -11,3 +11,4 @@
         </div>
     </a>
 </div>
+

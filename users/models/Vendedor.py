@@ -5,44 +5,46 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
-class Vendedor(AbstractBaseUser, PermissionsMixin):
+class Vendedor(models.Model):
 
     username = models.OneToOneField(
-        'users.Usuario',
+        'Usuario',
         on_delete=models.CASCADE,
         null=True
     )
 
-    nome_loja = models.TextField(
-        verbose_name="Nome da loja"
+    nome_loja = models.CharField(
+        verbose_name="Nome da loja",
+        max_length=96
     )
 
-    nome_completo = models.TextField(
+    nome_completo = models.CharField(
         verbose_name="Nome completo",
+        max_length=96
     )
 
-    cnpj = models.TextField(
+    cnpj = models.CharField(
         verbose_name="CNPJ sem formatação",
         blank=False,
         null=False,
         max_length=14
     )
 
-    endereco = models.TextField(
+    endereco = models.CharField(
         verbose_name="Endereço",
-
+        max_length=194
     )
 
-    telefone = models.TextField(
+    telefone = models.CharField(
         verbose_name="Telefone",
         max_length=11
     )
 
 
-
     class Meta:
         verbose_name = "Vendedor"
+        verbose_name_plural = "Vendedores"
         db_table = "vendedor"
 
     def __str__(self):
-        return self.nome_completo
+        return self.nome_loja

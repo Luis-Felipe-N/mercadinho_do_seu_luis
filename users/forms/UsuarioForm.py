@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 
+from users.models.Usuario import Usuario
+
 def strong_password(password):
     if len(password) < 8:
         raise ValidationError(
@@ -10,7 +12,7 @@ def strong_password(password):
             code="invalid"
         )
 
-class RegisterForm(forms.ModelForm):
+class RegisterUsuarioForm(forms.ModelForm):
 
     password = forms.CharField(
         required=True,
@@ -22,12 +24,8 @@ class RegisterForm(forms.ModelForm):
         }
     )
 
-    nome_vendedor = forms.CharField(
-        required=True
-    )
-
     class Meta:
-        model = User
+        model = Usuario
         fields = [
             'first_name', 
             'last_name',

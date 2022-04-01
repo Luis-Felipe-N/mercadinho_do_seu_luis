@@ -1,0 +1,35 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+    {% include 'global/components/header.html' %}
+    <main class="produto">
+    <div class="produto__layout">
+        <div class="produto__layout_imgs">
+            <div class="list__img">
+                <ul>
+                    <li class="center">
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                    </li>
+                    <li class="center">
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                    </li>
+                    <li class="center">
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                    </li>
+
+                </ul>
+            </div>
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+        </div>
+        <div class="produto__layout_info">
+            
+        </div>
+    </div>
+    <div class="produto__detalhe">
+        <h1>Detalhe do produto</h1>
+        <div class="center">
+            {{ produto.descricao_html|safe }}
+        </div>
+    </div>
+    </main>
+{% endblock content %}

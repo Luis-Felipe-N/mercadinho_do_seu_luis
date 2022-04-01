@@ -21,7 +21,7 @@ class Produto(models.Model):
         verbose_name="Descrição em HTML",
     )
 
-    preco = models.IntegerField(
+    preco = models.FloatField(
         verbose_name="Preço",
         blank=False,
         null=False

@@ -2,7 +2,8 @@
 
 /* Páginas */
 @import url("./pages/home.css");
-@import url("./pages/login.css");
+@import url("./pages/users.css");
+@import url("./pages/produto-detalhe.css");
 
 /* Componentes */
 @import url("./components/header.css");
