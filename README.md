@@ -14,13 +14,13 @@ Ecommer (Não funcional), criado para aprender mais sobre o framework Django.
 </h4>
 
 <p align="center">
- <a href="#Technologies">Technologies</a> •
- <a href="#Getting-started">Getting started</a> •
+ <a href="#Tecnologias">Tecnologias</a> •
+ <a href="#Iniciando-projeto">Iniciando projeto</a> •
  <a href="#autor">Autor</a>
 </p>
 
 
-![Jokenpô](assets/cover.png)
+![mercadinho](assets/cover.png)
 
 
 
