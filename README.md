@@ -1,4 +1,4 @@
-# mercadinho_do_seu_luis
+
 <h1 align="center">Mercadinho do seu Luis</h1>
 
 Ecommer (Não funcional), criado para aprender mais sobre o framework Django.
@@ -10,7 +10,7 @@ Ecommer (Não funcional), criado para aprender mais sobre o framework Django.
 </p>
 
 <h4 align="center"> 
-	✔️ 🚀 Em construção  ✔️
+	👨‍💻 Em construção  👨‍💻
 </h4>
 
 <p align="center">
