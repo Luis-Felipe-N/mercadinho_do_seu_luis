@@ -17,7 +17,8 @@
                     </svg>
                     <span>{{ user.username }}</span>
                 </div>
-                {% if user.is_vendedor %}
+                {% if user.vendedor.id %}
+                    <a class="btn_white btn_hover" href="{% url 'mercado:adicionar-produto' %}">Adicinar produto</a>
                 {% else %}
                     <a class="btn_white btn_hover" href="{% url 'users:register-vendedor' %}">
                         Virar vendendor
@@ -32,6 +33,12 @@
     <div class="header__container-bottom">
         <nav>
             <ul>
+                <li>
+                    <a href="{% url 'mercado:categoria-produto'  %}">
+                        Celulares
+                    </a>
+                </li>
+                <li>Celulares</li>
                 <li>Celulares</li>
             </ul>
         </nav>

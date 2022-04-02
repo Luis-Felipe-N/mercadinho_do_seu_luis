@@ -1,9 +1,16 @@
+from pickletools import uint1
 from django.db import models
 
 class Categoria(models.Model):
     nome = models.CharField(
         verbose_name="Categoria",
         max_length=96
+    )
+
+    slug = models.SlugField(
+        verbose_name="Slug da categoria",
+        unique=True,
+        null=True
     )
 
     class Meta:

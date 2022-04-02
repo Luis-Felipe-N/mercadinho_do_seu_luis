@@ -1,11 +1,12 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from django.forms import ValidationError
 from users.forms.UsuarioForm import RegisterUsuarioForm, LoginForm
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView as LoginViewClass
+
+from users.models.Usuario import Usuario
 
 class LoginView(LoginViewClass):
     template_name = './users/login.html'
@@ -23,25 +24,30 @@ class LoginView(LoginViewClass):
         return self.get_template()
 
     def post(self, request):
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
 
-        user = authenticate(username=username, password=password)
+        print(password)
+
+        user = authenticate(request, username=username, password=password)
+
+        # print(username, password, user)
 
         if user is not None:
             login(request, user)
             messages.success(request, 'Login feito com sucesso')
             return redirect('mercado:home')
-        else:
-            raise ValidationError('Senha ou email inválido', code='invalid')
+
+        # if form.is_valid():
+        #     print('pelo menos vem até aqui')
+            
         
 
 
 class RegisterUsuarioView(View):
     template_name = './users/register.html'
 
-    def get_template(self):
-        form = RegisterUsuarioForm()
+    def get_template(self, form, *args, **kwargs):
 
         context = {
             'form': form
@@ -50,16 +56,18 @@ class RegisterUsuarioView(View):
         return render(self.request, self.template_name, context)
 
     def get(self, request):
+        form = RegisterUsuarioForm()
         
-        return self.get_template()
+        return self.get_template(form)
 
     def post(self, request):
         form = RegisterUsuarioForm(request.POST)
 
         if form.is_valid():
+            Usuario.check_password
             form.save()
             messages.success(request, 'Conta criada com sucesso')
 
 
-        return self.get_template()
+        return self.get_template(form)
 

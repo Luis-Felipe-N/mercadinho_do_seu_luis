@@ -7,6 +7,10 @@ class HomeView(View):
     template_name = 'mercado/pages/home.html'
 
     def get_template(self, context):
+        try:
+            print(self.request.user.vendedor)
+        except:
+            print('não tem vendedor aqui')
 
         return render(self.request, self.template_name, context)
 

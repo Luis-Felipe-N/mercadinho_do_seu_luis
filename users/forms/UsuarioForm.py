@@ -34,26 +34,15 @@ class RegisterUsuarioForm(forms.ModelForm):
             'password'
         ]
 
-    # Propria validação de um campo | clean_nomecampo
-    def clean_password(self):
-        data = self.cleaned_data.get('password')
-
-        # Logica da validação
-        # if 'palavrão' in data:
-            # retorna erro
-            
-            # raise ValidationError(
-            #     'Não é válido palavrão',
-            #     code="invalid_word"
-            # )
-            
-            # É possivel pegar o error em error_messages
-            
-
-        return data
-
 class LoginForm(forms.ModelForm):
 
+    password = forms.CharField(
+        widget=forms.PasswordInput()
+    )
+
     class Meta:
-        model = User
-        fields = ['username', 'password']
+        model = Usuario
+        fields = [
+                'username',
+                'password'
+        ]

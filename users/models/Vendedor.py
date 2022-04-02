@@ -25,6 +25,7 @@ class Vendedor(models.Model):
 
     cnpj = models.CharField(
         verbose_name="CNPJ sem formatação",
+        help_text="CNPJ sem formatação",
         blank=False,
         null=False,
         max_length=14

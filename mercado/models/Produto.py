@@ -32,7 +32,7 @@ class Produto(models.Model):
         on_delete=models.CASCADE,
     )
 
-    imagem = models.ImageField(upload_to="mercado/covers/%Y/%m/%d/", null=True)
+    imagem = models.ImageField(upload_to="mercado/covers/%Y/%m/%d/")
 
     categoria = models.ForeignKey(
         'Categoria',

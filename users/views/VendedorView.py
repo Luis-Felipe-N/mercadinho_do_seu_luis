@@ -6,8 +6,7 @@ from users.forms.VendedorForm import RegisterVendedorForm
 class RegisterVendedorView(View):
     template_name = 'users/register-vendedor.html'
 
-    def get_template(self):
-        form = RegisterVendedorForm()
+    def get_template(self, form):
 
         context = {
             "form": form
@@ -16,24 +15,23 @@ class RegisterVendedorView(View):
         return render(self.request, self.template_name, context)
 
     def get(self, request, *args, **kwargs):
+        form = RegisterVendedorForm()
 
-        return self.get_template()
+        return self.get_template(form)
 
     def post(self, request, *args, **kwargs):
         
         form = RegisterVendedorForm(request.POST)
-        print(dir(request.user))
-
 
         if form.is_valid():
             vendedor = form.save(commit=False)
 
             vendedor.username = request.user
 
-            request.user.is_vendedor = True
+            vendedor.username.is_vendedor = True
 
             form.save()
 
             return redirect('mercado:home')
 
-        return self.get_template()
+        return self.get_template(form)

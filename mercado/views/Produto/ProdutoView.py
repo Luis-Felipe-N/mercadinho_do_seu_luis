@@ -8,6 +8,8 @@ class ProdutoView(View):
     def get(self, request, id):
         produto = Produto.objects.get(pk=id)
 
+        print(produto.vendendor)
+
         context = {
             "produto": produto
         }
