@@ -50,10 +50,26 @@ class Produto(models.Model):
         verbose_name="O Produto está com desconto",
     )
 
+
     def get_preco_formatado(self, *args, **kwargs):
         locale.setlocale( locale.LC_ALL, '' )
         preco_formatado = locale.currency(self.preco, symbol=False, grouping=True)
         return preco_formatado
+
+    def get_quantidade_desconto(self):
+        desconto = self.desconto
+        return f'{int(desconto)}%'
+
+    def get_preco_com_desconto(self):
+        desconto = self.preco * (self.desconto / 100)
+
+        preco_desconto = self.preco - desconto
+
+        locale.setlocale( locale.LC_ALL, '' )
+        preco_formatado = locale.currency(preco_desconto, symbol=False, grouping=True)
+
+        return preco_formatado
+
 
     def __str__(self):
         return self.nome

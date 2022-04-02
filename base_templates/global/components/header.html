@@ -18,7 +18,7 @@
                     <span>{{ user.username }}</span>
                 </div>
                 {% if user.vendedor.id %}
-                    <a class="btn_white btn_hover" href="{% url 'mercado:adicionar-produto' %}">Adicinar produto</a>
+                    <a class="btn_white btn_hover" href="{% url 'mercado:adicionar-produto'  %}">Adicinar produto</a>
                 {% else %}
                     <a class="btn_white btn_hover" href="{% url 'users:register-vendedor' %}">
                         Virar vendendor
@@ -31,15 +31,28 @@
         </div>
     </div>
     <div class="header__container-bottom">
-        <nav>
+        <nav class="header__categorias">
             <ul>
                 <li>
-                    <a href="{% url 'mercado:categoria-produto'  %}">
+                    <a href="{% url 'mercado:categoria-produto' 'monitores'  %}">
+                        Monitores
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'mercado:categoria-produto' 'celulares'  %}">
                         Celulares
                     </a>
                 </li>
-                <li>Celulares</li>
-                <li>Celulares</li>
+                <li>
+                    <a href="{% url 'mercado:categoria-produto' 'consoles'  %}">
+                        Consoles
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'mercado:categoria-produto' 'tvs'  %}">
+                        Televições
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

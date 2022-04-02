@@ -61,3 +61,13 @@
     justify-content: center;
 }
 
+.header__categorias {
+    padding: 1rem 0;
+}
+
+.header__categorias ul {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    list-style: none;
+}

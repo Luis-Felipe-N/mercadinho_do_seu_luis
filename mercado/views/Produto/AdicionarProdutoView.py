@@ -1,6 +1,8 @@
 from multiprocessing import context
+from urllib import request
 from django.views import View
 from mercado.forms.ProdutoForm import ProdutoForm
+from django.shortcuts import render
 
 class AdicionarProdutoView(View):
 
@@ -10,4 +12,5 @@ class AdicionarProdutoView(View):
         context = {
             "form": form
         }
-        
+
+        return render(request, 'mercado/pages/form-produto.html', context)
