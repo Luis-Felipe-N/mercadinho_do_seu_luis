@@ -64,9 +64,9 @@ class RegisterUsuarioView(View):
         form = RegisterUsuarioForm(request.POST)
 
         if form.is_valid():
-            Usuario.check_password
             form.save()
             messages.success(request, 'Conta criada com sucesso')
+            redirect('users:login')
 
 
         return self.get_template(form)
