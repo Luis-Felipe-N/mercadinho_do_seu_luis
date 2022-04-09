@@ -1,6 +1,8 @@
-from distutils.command.upload import upload
-import locale
+from logging import PlaceHolder
 from django.db import models
+import locale
+
+from pkg_resources import require
 
 from mercado.models.Categoria import Categoria
 
@@ -10,21 +12,26 @@ class Produto(models.Model):
         verbose_name="Nome",
         blank=False,
         null=False,
-        max_length=96
+        max_length=96,
+        help_text='Luis Felipe',
     )
 
     descricao = models.TextField(
         verbose_name="Descrição",
+        help_text="Este é o melhor produto do mundo"
     )
 
     descricao_html = models.TextField(
         verbose_name="Descrição em HTML",
+        help_text="<h1>Este é o melhor produto do mundo</h1>",
+        blank=True
     )
 
     preco = models.FloatField(
         verbose_name="Preço",
         blank=False,
-        null=False
+        null=False,
+
     )
 
     vendendor = models.ForeignKey(

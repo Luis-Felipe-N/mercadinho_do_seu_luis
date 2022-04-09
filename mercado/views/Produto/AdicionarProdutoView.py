@@ -6,11 +6,12 @@ from django.shortcuts import render
 
 class AdicionarProdutoView(View):
 
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         form = ProdutoForm()
 
         context = {
-            "form": form
+            "form": form,
+            "titulo_da_pagina": "Adicionar produto"
         }
 
         return render(request, 'mercado/pages/form-produto.html', context)

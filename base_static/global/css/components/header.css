@@ -19,6 +19,9 @@
 .header__search {
     display: flex;
     background-color: white;
+    border-radius: 5px;
+    align-items: center;
+    /* over */
 }
 
 .header__search:focus-within {
@@ -37,10 +40,16 @@
 }
 
 .header__search button {
+    background-color: var(--color-primary);
+    font-size: 0;
+    border-radius: 5px;
     display: grid;
     place-items: center;
     cursor: pointer;
-    width: 4rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: .5rem;
+    color: var(--color-white);
 }
 
 

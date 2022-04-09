@@ -5,6 +5,7 @@
 @import url("./pages/users.css");
 @import url("./pages/produto-detalhe.css");
 @import url("./pages/categoria.css");
+@import url("./pages/form-produto.css");
 
 /* Componentes */
 @import url("./components/header.css");

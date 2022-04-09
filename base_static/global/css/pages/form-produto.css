@@ -1,0 +1,76 @@
+.form-produto {
+    padding: 2rem 5%;
+}
+
+.form-produto__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.form-produto__container .form-produto__campo-textos label, .form-produto__container .form-produto__campo-outros label {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+}
+
+.form-produto__container .form-produto__campo-textos textarea,
+.form-produto__container .form-produto__campo-textos input[type="text"],
+.form-produto__container .form-produto__campo-outros input[type="number"] {
+    border-radius: 5px;
+    border: 2px solid var(--color-secondary);
+    font-size: 1rem;
+}
+
+.form-produto__container .form-produto__campo-textos textarea {
+    resize: none;
+    padding: 1rem;
+    height: 150px;
+}
+
+
+.form-produto__container .form-produto__campo-textos input[type="text"],
+.form-produto__container .form-produto__campo-outros input[type="number"] {
+    padding: 0 1rem;
+    display: block;
+    width: 100%;
+    height: 3rem;
+}
+
+.form-produto__container .form-produto__campo-outros > div {
+    display: flex; 
+    gap: 1rem;
+}
+
+.form-produto__container .form-produto__container-titulo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-produto__container .form-produto__container-titulo svg {
+    font-size: 2.5rem;
+    /* font-size: ; */
+}
+
+.form-produto__container .form-produto__container-titulo h1 {
+    font-weight: 600;
+}
+
+.requirido {
+    color: var(--color-primary);
+}
+
+.label-row {
+    flex-direction: row !important;
+    align-items: center;
+    gap: .5rem;
+}
+
+.label-row input {
+    width: 17px;
+    height: 17px;
+    
+}
