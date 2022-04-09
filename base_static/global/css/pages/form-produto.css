@@ -39,8 +39,19 @@
 }
 
 .form-produto__container .form-produto__campo-outros > div {
-    display: flex; 
+    align-items: flex-start;
+    display: grid; 
+    grid-template-columns: 25% 40% 25%;
     gap: 1rem;
+}
+
+.form-produto__container .form-produto__campo-outros select {
+    height: 3rem;
+    background-color: var(--color-primary-light);
+    flex: 1;
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
 .form-produto__container .form-produto__container-titulo {
@@ -63,14 +74,84 @@
     color: var(--color-primary);
 }
 
-.label-row {
+.form-produto__container .form-produto__campo-outros .label-imagem {
+    display: flex;
+}
+
+.form-produto__container .form-produto__campo-outros .label-imagem input {
+    display: none;
+}
+
+.form-produto__container .form-produto__campo-outros .label-imagem .btn-selecionar-imagem {
+    cursor: pointer;
+    display: inline-block;
+    margin-right: .5rem;
+    height: 3rem;
+    line-height: 3rem;
+    flex-shrink: 1;
+    background-color: var(--color-primary-light);
+    padding: 0 1rem;
+    border-radius: 5px;
+}
+
+.form-produto__container .form-produto__campo-outros .label-row {
     flex-direction: row !important;
     align-items: center;
     gap: .5rem;
 }
 
-.label-row input {
-    width: 17px;
-    height: 17px;
+.form-produto__container .form-produto__campo-outros .label-row  input{
+    display: none;
+}
+
+.form-produto__container .form-produto__campo-outros .label-row .toggle {
+    border-radius: 50px;
+    display: block;
+    background-color: var(--color-secondary);
+    width: 50px;
+    height: 30px;
+    position: relative;
+    padding: 3px;
+    cursor: pointer;
+    transition: .2s;
+    display: flex;
+    justify-content: start;
+}             
+
+.form-produto__container .form-produto__campo-outros .label-row .toggle::after {
+    content: '';
+    display: block;
+    transition: 2s;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-white);
+}
+
+.form-produto__container .form-produto__campo-outros .label-row input:checked ~ .toggle {
+    background-color: var(--color-primary);
+    justify-content: end;
+}
+
+.form-produto__container .form-produto__campo-outros .label-row input:checked ~ .toggle::after {
+    background-color: var(--color-secondary);
+    /* right: 3px; */
+}
+
+.form-produto__btns  {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-produto__btns a {
+    box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+@media (max-width:840px) {
+    .form-produto__container .form-produto__campo-outros > div {
+        display: grid; 
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
     
 }

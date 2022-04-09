@@ -1,5 +1,6 @@
 {% extends 'global/base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block title %}{{ titulo_da_pagina }}{% endblock title %}
 
@@ -54,14 +55,22 @@
                         </span>
                         {% render_field form.preco placeholder=form.preco.help_text %}
                     </label>
-                    <label>
+                    <label class="label-imagem">
                         <span>
                             {{ form.imagem.label }}
                             {% if form.imagem.required %}
-                                <span class="requirido">*</span>
+                            <span class="requirido">*</span>
                             {% endif %}
                         </span>
-                        {% render_field form.imagem placeholder=form.imagem.help_text %}
+                        <div>
+                            <span class="btn-selecionar-imagem">
+                                Selecionar imagem
+                            </span>
+                            <span data="imageName">
+                                Imagem.png
+                            </span>
+                        </div>
+                        {% render_field form.imagem data="inputImage" %}
                     </label>
                     <label>
                         <span>
@@ -85,6 +94,7 @@
                     </label>
                     <label class="label-row">
                         {% render_field form.com_desconto placeholder=form.com_desconto.help_text %}
+                        <span class="toggle"></span>
                         <span>
                             {{ form.com_desconto.label }}
                             {% if form.com_desconto.required %}
@@ -94,7 +104,14 @@
                     </label>
                 </div>
             </div>
+
+            <div class="form-produto__btns">
+                <button class="btn btn_green">
+                    Salvar
+                </button>
+                <a class="btn_white" href="{% url 'mercado:home' %}">Voltar</a>
+            </div>
         </form>
     </main>
-    
+    <script src="{% static 'global/js/form-produto.js' %}"></script>
 {% endblock content %}
