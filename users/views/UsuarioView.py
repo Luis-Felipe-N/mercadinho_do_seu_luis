@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
 from users.forms.UsuarioForm import RegisterUsuarioForm, LoginForm
@@ -24,23 +25,19 @@ class LoginView(LoginViewClass):
         return self.get_template()
 
     def post(self, request):
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-        print(password)
+        user = authenticate(username=username, password=password)
 
-        user = authenticate(request, username=username, password=password)
-
-        # print(username, password, user)
+        print(username, password, user)
 
         if user is not None:
             login(request, user)
             messages.success(request, 'Login feito com sucesso')
-            return redirect('mercado:home')
-
-        # if form.is_valid():
-        #     print('pelo menos vem até aqui')
-            
+            return reverse('mercado:home')
+        else:
+            return render()
         
 
 
@@ -64,7 +61,9 @@ class RegisterUsuarioView(View):
         form = RegisterUsuarioForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            usuario = form.save(commit=False)
+            usuario.set_password(usuario.password)
+            usuario.save()
             messages.success(request, 'Conta criada com sucesso')
             redirect('users:login')
 

@@ -1,8 +1,6 @@
-from logging import PlaceHolder
+from django.urls import reverse
 from django.db import models
 import locale
-
-from pkg_resources import require
 
 from mercado.models.Categoria import Categoria
 
@@ -13,17 +11,17 @@ class Produto(models.Model):
         blank=False,
         null=False,
         max_length=96,
-        help_text='Luis Felipe',
+        help_text='Ex: Luis Felipe',
     )
 
     descricao = models.TextField(
         verbose_name="Descrição",
-        help_text="Este é o melhor produto do mundo"
+        help_text="Ex: Este é o melhor produto do mundo"
     )
 
     descricao_html = models.TextField(
         verbose_name="Descrição em HTML",
-        help_text="<h1>Este é o melhor produto do mundo</h1>",
+        help_text="Ex: <h1>Este é o melhor produto do mundo</h1>",
         blank=True
     )
 
@@ -57,6 +55,9 @@ class Produto(models.Model):
         verbose_name="O Produto está com desconto",
     )
 
+    def get_absolute_url(self):
+        return '/produto/%i/' % self.pk
+    
 
     def get_preco_formatado(self, *args, **kwargs):
         locale.setlocale( locale.LC_ALL, '' )

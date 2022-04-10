@@ -1,17 +1,15 @@
 {% extends 'global/base.html' %}
 {% load widget_tweaks %}
 
+{% block title %}Login{% endblock title %}
+
 {% block content %}
     <main class="users center">
         <div class="users__container">
             <h2>Entrar no mercadinho</h2>
 
-            {% if form.errors %}
-                {{ form.errors }}
-            {% endif %}
             <form class="form" method="post">
                 {% csrf_token %}
-                {{ message }}
                 {% for field in form %}
                     <label>
                         {{ field.label }}

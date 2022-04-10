@@ -1,7 +1,4 @@
-from multiprocessing import context
-from pyexpat import model
-from re import template
-from urllib import request
+from django.contrib import messages
 from django.views.generic.edit import CreateView
 from mercado.forms.ProdutoForm import ProdutoForm
 from django.shortcuts import render
@@ -9,20 +6,22 @@ from django.shortcuts import render
 class AdicionarProdutoView(CreateView):
     template_name = 'mercado/pages/form-produto.html'
     model = ProdutoForm
-    form = ProdutoForm
+    form_class = ProdutoForm
+    sucess_url = 'mercado:home'
 
-    def get(self, request, *args, **kwargs):
-        form = ProdutoForm()
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.vendedor = self.request.POST.user__vendedor
+        print(self.request.POST.user__vendedor)
+        return super().form_valid(form)
 
-        context = {
-            "form": form,
-            "titulo_da_pagina": "Adicionar produto"
-        }
+    def get_sucess_url():
+        messages.sucess('Produto cadastrado com sucesso')
 
-        return render(request, 'mercado/pages/form-produto.html', context)
+        return 'mercado:home'
 
-    def post(self, request, *args, **kwargs):
-        form = ProdutoForm(request.POST)
-
-        if form.is_valid():
-            form.save(commit=False)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["titulo_da_pagina"] = "Adicionar produto"
+        return context
+    
