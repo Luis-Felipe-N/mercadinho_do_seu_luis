@@ -8,7 +8,7 @@ class HomeView(View):
 
     def get_template(self, context):
         try:
-            print(self.request.user.vendedor)
+            print(self.request.user.is_vendedor)
         except:
             print('não tem vendedor aqui')
 

@@ -9,7 +9,18 @@
     margin: auto;
 }
 
-.form-produto__container .form-produto__campo-textos label, .form-produto__container .form-produto__campo-outros label {
+.form-produto__campo-textos {
+    display: grid;
+    grid-template-columns: 25% 50% 20%;
+    /* justify-content: center; */
+    gap: 1rem;
+}
+
+.form-produto__campo-textos .span-3 {
+    grid-column: 1 / 4;
+}
+
+.form-produto__container .form-produto__campo-textos label {
     display: flex;
     flex-direction: column;
     padding-bottom: 1.5rem;
@@ -17,7 +28,7 @@
 
 .form-produto__container .form-produto__campo-textos textarea,
 .form-produto__container .form-produto__campo-textos input[type="text"],
-.form-produto__container .form-produto__campo-outros input[type="number"] {
+.form-produto__container .form-produto__campo-textos input[type="number"] {
     border-radius: 5px;
     border: 2px solid var(--color-secondary);
     font-size: 1rem;
@@ -31,21 +42,14 @@
 
 
 .form-produto__container .form-produto__campo-textos input[type="text"],
-.form-produto__container .form-produto__campo-outros input[type="number"] {
+.form-produto__container .form-produto__campo-textos input[type="number"] {
     padding: 0 1rem;
     display: block;
     width: 100%;
     height: 3rem;
 }
 
-.form-produto__container .form-produto__campo-outros > div {
-    align-items: flex-start;
-    display: grid; 
-    grid-template-columns: 25% 40% 25%;
-    gap: 1rem;
-}
-
-.form-produto__container .form-produto__campo-outros select {
+.form-produto__container .form-produto__campo-textos select {
     height: 3rem;
     background-color: var(--color-primary-light);
     flex: 1;
@@ -74,15 +78,15 @@
     color: var(--color-primary);
 }
 
-.form-produto__container .form-produto__campo-outros .label-imagem {
+.form-produto__container .form-produto__campo-textos .label-imagem {
     display: flex;
 }
 
-.form-produto__container .form-produto__campo-outros .label-imagem input {
+.form-produto__container .form-produto__campo-textos .label-imagem input {
     display: none;
 }
 
-.form-produto__container .form-produto__campo-outros .label-imagem .btn-selecionar-imagem {
+.form-produto__container .form-produto__campo-textos .label-imagem .btn-selecionar-imagem {
     cursor: pointer;
     display: inline-block;
     margin-right: .5rem;
@@ -94,17 +98,17 @@
     border-radius: 5px;
 }
 
-.form-produto__container .form-produto__campo-outros .label-row {
+.form-produto__container .form-produto__campo-textos .label-row {
     flex-direction: row !important;
     align-items: center;
     gap: .5rem;
 }
 
-.form-produto__container .form-produto__campo-outros .label-row  input{
+.form-produto__container .form-produto__campo-textos .label-row  input{
     display: none;
 }
 
-.form-produto__container .form-produto__campo-outros .label-row .toggle {
+.form-produto__container .form-produto__campo-textos .label-row .toggle {
     border-radius: 50px;
     display: block;
     background-color: var(--color-secondary);
@@ -118,7 +122,7 @@
     justify-content: start;
 }             
 
-.form-produto__container .form-produto__campo-outros .label-row .toggle::after {
+.form-produto__container .form-produto__campo-textos .label-row .toggle::after {
     content: '';
     display: block;
     transition: 2s;
@@ -128,12 +132,12 @@
     background-color: var(--color-white);
 }
 
-.form-produto__container .form-produto__campo-outros .label-row input:checked ~ .toggle {
+.form-produto__container .form-produto__campo-textos .label-row input:checked ~ .toggle {
     background-color: var(--color-primary);
     justify-content: end;
 }
 
-.form-produto__container .form-produto__campo-outros .label-row input:checked ~ .toggle::after {
+.form-produto__container .form-produto__campo-textos .label-row input:checked ~ .toggle::after {
     background-color: var(--color-secondary);
     /* right: 3px; */
 }
@@ -148,7 +152,7 @@
 }
 
 @media (max-width:840px) {
-    .form-produto__container .form-produto__campo-outros > div {
+    .form-produto__container .form-produto__campo-textos {
         display: grid; 
         grid-template-columns: 1fr;
         gap: 1rem;

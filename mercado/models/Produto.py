@@ -1,4 +1,3 @@
-from django.urls import reverse
 from django.db import models
 import locale
 
@@ -11,7 +10,7 @@ class Produto(models.Model):
         blank=False,
         null=False,
         max_length=96,
-        help_text='Ex: Luis Felipe',
+        help_text='Ex: Motorola Moto g10',
     )
 
     descricao = models.TextField(
@@ -32,9 +31,10 @@ class Produto(models.Model):
 
     )
 
-    vendendor = models.ForeignKey(
+    vendedor = models.ForeignKey(
         'users.Vendedor',
         on_delete=models.CASCADE,
+        null=True,
     )
 
     imagem = models.ImageField(upload_to="mercado/covers/%Y/%m/%d/")
@@ -53,6 +53,12 @@ class Produto(models.Model):
 
     com_desconto = models.BooleanField(
         verbose_name="O Produto está com desconto",
+        blank=True
+    )
+
+    data_criacao = models.DateField(
+        verbose_name="Data de criação",
+        auto_now=True,
     )
 
     def get_absolute_url(self):

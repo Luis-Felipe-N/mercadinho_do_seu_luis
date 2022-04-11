@@ -16,107 +16,53 @@
             {% endfor %}
         {% endif %}
 
-        <form method="post" class="form-produto__container">
+        <form method="post" class="form-produto__container" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="form-produto__container-titulo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.02698 11.9929L5.26242 16.2426L6.67902 14.8308L4.85766 13.0033L22.9731 13.0012L22.9728 11.0012L4.85309 11.0033L6.6886 9.17398L5.27677 7.75739L1.02698 11.9929Z" fill="currentColor" /></svg>
                 <h1>{{ titulo_da_pagina }}</h1>
             </div>
+
             <div class="form-produto__campo-textos">
-                <label>
-                    <span>
-                        {{ form.nome.label }}
-                        {% if form.nome.required %}
-                            <span class="requirido">*</span>
-                        {% endif %}
-                    </span>
-                    {% render_field form.nome placeholder=form.nome.help_text %}
-                </label>
+                {% for field in form %}
+                    <label class="{{ field.field.widget.attrs.class }}">
+                        <span>
+                            {{ field.label}}
+                            {% if field.required %}
+                                <span class="requirido">*</span>
+                            {% endif %}
+                        </span>
 
-                <label>
-                    <span>
-                        {{ form.descricao.label }}
-                        {% if form.descricao.required %}
-                            <span class="requirido">*</span>
-                        {% endif %}
-                    </span>
-                    {% render_field form.descricao placeholder=form.descricao.help_text %}
-                </label>
+                        {% if field.name == 'imagem' %}
+                            <div>
+                                <span class="btn-selecionar-imagem">
+                                    Selecionar imagem
+                                </span>
+                                <span data="imageName">
+                                    Imagem.png
+                                </span>
+                            </div>
+                            {% endif %}
+                            
+                            {% render_field field placeholder=field.help_text %}
 
-                <label>
-                    <span>
-                        {{ form.descricao_html.label }}
-                        {% if form.descricao_html.required %}
-                            <span class="requirido">*</span>
+                        {% if field.name == 'com_desconto' %}
+                            <span class="toggle"></span>
                         {% endif %}
-                    </span>
-                    {% render_field form.descricao_html placeholder=form.descricao_html.help_text %}
-                </label>
+                    </label>
+                    {% if field.erros %}
+                        {% for error in field.errors %}
+                            <p class="form_error">
+                                {{ error }}  
+                            </p>     
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
             </div>
-            <div class="form-produto__campo-outros">
-                <div>
-                    <label>
-                        <span>
-                            {{ form.preco.label }}
-                            {% if form.preco.required %}
-                                <span class="requirido">*</span>
-                            {% endif %}
-                        </span>
-                        {% render_field form.preco placeholder=form.preco.help_text %}
-                    </label>
-                    <label class="label-imagem">
-                        <span>
-                            {{ form.imagem.label }}
-                            {% if form.imagem.required %}
-                            <span class="requirido">*</span>
-                            {% endif %}
-                        </span>
-                        <div>
-                            <span class="btn-selecionar-imagem">
-                                Selecionar imagem
-                            </span>
-                            <span data="imageName">
-                                Imagem.png
-                            </span>
-                        </div>
-                        {% render_field form.imagem data="inputImage" %}
-                    </label>
-                    <label>
-                        <span>
-                            {{ form.categoria.label }}
-                            {% if form.categoria.required %}
-                                <span class="requirido">*</span>
-                            {% endif %}
-                        </span>
-                        {% render_field form.categoria placeholder=form.categoria.help_text %}
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <span>
-                            {{ form.desconto.label }}
-                            {% if form.desconto.required %}
-                                <span class="requirido">*</span>
-                            {% endif %}
-                        </span>
-                        {% render_field form.desconto placeholder=form.desconto.help_text %}
-                    </label>
-                    <label class="label-row">
-                        {% render_field form.com_desconto placeholder=form.com_desconto.help_text %}
-                        <span class="toggle"></span>
-                        <span>
-                            {{ form.com_desconto.label }}
-                            {% if form.com_desconto.required %}
-                                <span class="requirido">*</span>
-                            {% endif %}
-                        </span>
-                    </label>
-                </div>
-            </div>
-
+                
             <div class="form-produto__btns">
-                <button class="btn btn_green">
+                <button type="submit" class="btn btn_green">
                     Salvar
                 </button>
                 <a class="btn_white" href="{% url 'mercado:home' %}">Voltar</a>

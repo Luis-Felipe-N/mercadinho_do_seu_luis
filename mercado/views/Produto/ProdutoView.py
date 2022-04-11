@@ -8,8 +8,6 @@ class ProdutoView(DetailView):
     def get(self, request, id):
         produto = get_object_or_404(Produto, pk=id)
 
-        print(produto.vendendor)
-
         context = {
             "produto": produto
         }

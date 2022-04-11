@@ -9,8 +9,17 @@ from django.contrib.auth.views import LoginView as LoginViewClass
 
 from users.models.Usuario import Usuario
 
+# Redirecionar para home que estiver logado
+
 class LoginView(LoginViewClass):
     template_name = './users/login.html'
+
+    def dispatch(self, request, *args, **kwargs):
+
+        if self.request.user.is_authenticated:
+            messages.error(self.request, 'Usuário já está logado, faça logOut para entrar novamente')
+            return redirect('mercado:home')
+        return super().dispatch(request, *args, **kwargs)
 
     def get_template(self, *args, **kwargs):
         form = LoginForm()
@@ -25,20 +34,22 @@ class LoginView(LoginViewClass):
         return self.get_template()
 
     def post(self, request):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        form = LoginForm(request.POST)
 
-        user = authenticate(username=username, password=password)
+        if form.is_valid():
+            username = request.POST.get('username','')
+            password = request.POST.get('password','')
 
-        print(username, password, user)
+            user = authenticate(username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Login feito com sucesso')
-            return reverse('mercado:home')
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Login feito com sucesso')
+                return redirect('mercado:home')
+            else:
+                return render(self.request, self.template_name, context={"form": form})
         else:
-            return render()
-        
+            return render(self.request, self.template_name, context={"form": form})
 
 
 class RegisterUsuarioView(View):
@@ -65,8 +76,7 @@ class RegisterUsuarioView(View):
             usuario.set_password(usuario.password)
             usuario.save()
             messages.success(request, 'Conta criada com sucesso')
-            redirect('users:login')
-
-
-        return self.get_template(form)
+            return redirect('users:login')
+        else:
+            return self.get_template(form)
 

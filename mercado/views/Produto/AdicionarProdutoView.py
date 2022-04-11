@@ -1,27 +1,28 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from mercado.forms.ProdutoForm import ProdutoForm
-from django.shortcuts import render
 
-class AdicionarProdutoView(CreateView):
+from mercado.models.Produto import Produto
+
+class AdicionarProdutoView(LoginRequiredMixin, CreateView):
     template_name = 'mercado/pages/form-produto.html'
-    model = ProdutoForm
+    model = Produto
     form_class = ProdutoForm
-    sucess_url = 'mercado:home'
+    success_url = 'mercado:home'
+
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.vendedor = self.request.POST.user__vendedor
-        print(self.request.POST.user__vendedor)
+        form.instance.vendedor = self.request.user.vendedor
         return super().form_valid(form)
 
-    def get_sucess_url():
-        messages.sucess('Produto cadastrado com sucesso')
-
-        return 'mercado:home'
+    def form_invalid(self, form) :
+        print(form)
+        return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context["titulo_da_pagina"] = "Adicionar produto"
         return context
     

@@ -7,9 +7,9 @@
     <main class="home">
         <div class="container">
             {% if messages %} 
-                {% for messagem in messages %}
-                    <p class="alert__success" role="alert">
-                        {{ messagem }}
+                {% for mensagem in messages %}
+                    <p class="alert__{{ mensagem.tags }}" role="alert">
+                        {{ mensagem }}
                     </p>
                 {% endfor %}
             {% endif %}

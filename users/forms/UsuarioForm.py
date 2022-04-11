@@ -60,13 +60,11 @@ class RegisterUsuarioForm(forms.ModelForm):
 
         return super().clean()
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-
-
-    class Meta:
-        model = Usuario
-        fields = [
-                'username',
-                'password'
-        ]
+    username = forms.CharField()
+    password = forms.CharField(
+        widget=forms.PasswordInput()
+    )
