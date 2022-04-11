@@ -19,6 +19,7 @@
                 </div>
                 {% if user.vendedor.id %}
                     <a class="btn_white btn_hover" href="{% url 'mercado:adicionar-produto'  %}">Adicinar produto</a>
+                    <a class="btn-green btn_hover" href="{% url 'mercado:meus-produtos' %}">Meus Produtos</a>
                 {% else %}
                     <a class="btn_white btn_hover" href="{% url 'users:register-vendedor' %}">
                         Virar vendendor

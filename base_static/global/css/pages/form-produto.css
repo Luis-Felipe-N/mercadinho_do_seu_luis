@@ -12,7 +12,8 @@
 .form-produto__campo-textos {
     display: grid;
     grid-template-columns: 25% 50% 20%;
-    /* justify-content: center; */
+    justify-content: flex-start;
+    align-items: start;
     gap: 1rem;
 }
 
@@ -78,6 +79,8 @@
     color: var(--color-primary);
 }
 
+/* Campo Imagem */
+
 .form-produto__container .form-produto__campo-textos .label-imagem {
     display: flex;
 }
@@ -98,6 +101,34 @@
     border-radius: 5px;
 }
 
+.form-produto__container .form-produto__campo-textos .imagem_preview .modal-imagem_preview {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.form-produto__container .form-produto__campo-textos .imagem_preview .modal-imagem_preview
+
+.form-produto__container .form-produto__campo-textos .imagem_preview button {
+    max-width: 100%;
+    background-color: transparent;
+}
+
+.form-produto__container .form-produto__campo-textos .imagem_preview button img {
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Fim Campo Imagem */
+
+/* Campo Com_desconto */
 .form-produto__container .form-produto__campo-textos .label-row {
     flex-direction: row !important;
     align-items: center;
@@ -141,6 +172,8 @@
     background-color: var(--color-secondary);
     /* right: 3px; */
 }
+
+/* Fim Campo Com_desconto */
 
 .form-produto__btns  {
     display: flex;

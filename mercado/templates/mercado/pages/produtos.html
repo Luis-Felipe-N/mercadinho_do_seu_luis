@@ -1,0 +1,10 @@
+{% extends './base-produtos.html' %}
+
+{% block conteudo %}
+    <h1>{{ titulo_da_pagina }}</h1>
+    <div class="categorias__cards">
+        {% for produto in produtos %}
+            {% include '../partials/cards.html' %}
+        {% endfor %}
+    </div>
+{% endblock conteudo %} 

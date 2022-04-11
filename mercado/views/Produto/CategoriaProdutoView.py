@@ -1,5 +1,3 @@
-from http.client import ImproperConnectionState
-from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.views.generic.list import ListView
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -7,18 +5,34 @@ from mercado.models.Produto import Produto
 from mercado.models.Categoria import Categoria
 
 class CategoriaProdutoView(ListView):
-    template_name = ''
-    model = Produto
+    template_name = 'mercado/pages/produtos.html'
+    model = Categoria
+    context_object_name = 'produtos'
+    
+    def get_queryset(self):
+        slug = self.kwargs["slug"]
+        return super().get_queryset().get(slug=slug).produto_set.all().order_by('-id')
 
-    def get(self, request, slug):
-        categoria = get_object_or_404(Categoria, slug=slug)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        produtos = categoria.produto_set.all()
-        categoria_nome = categoria.nome
+        slug = self.kwargs["slug"]
+        categoria = Categoria.objects.get(slug=slug)
 
-        context = {
-            "produtos": produtos,
-            "categoria_nome": categoria_nome
-        }
+        titulo_da_pagina = f'Categoria: {categoria.nome}' 
+        context["titulo_da_pagina"] = titulo_da_pagina
 
-        return render(request, 'mercado/pages/categoria.html', context)
+        return context
+
+    # def get(self, request, slug):
+    #     categoria = get_object_or_404(Categoria, slug=slug)
+
+    #     produtos = categoria.produto_set.all()
+    #     categoria_nome = categoria.nome
+
+    #     context = {
+    #         "produtos": produtos,
+    #         "categoria_nome": categoria_nome
+    #     }
+
+    #     return render(request, 'mercado/pages/categoria.html', context)

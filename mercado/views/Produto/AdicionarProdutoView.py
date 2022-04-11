@@ -9,7 +9,7 @@ class AdicionarProdutoView(LoginRequiredMixin, CreateView):
     template_name = 'mercado/pages/form-produto.html'
     model = Produto
     form_class = ProdutoForm
-    success_url = 'mercado:home'
+    # success_url = 'mercado:home'
 
 
     def form_valid(self, form):
@@ -26,3 +26,6 @@ class AdicionarProdutoView(LoginRequiredMixin, CreateView):
         context["titulo_da_pagina"] = "Adicionar produto"
         return context
     
+    # def get_success_url(self):
+    #     mess
+    #     return redirect

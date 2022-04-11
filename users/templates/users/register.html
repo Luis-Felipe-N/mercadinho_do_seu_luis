@@ -3,50 +3,9 @@
 
 {% block content %}
     <main class="users center">
-        <div class="users__container">
-            <h2>Cadastrar no mercadinho</h2>
+        
+        {% include ./users/partials/form.html %}
 
-            {% if form.errors %}
-                <p class="alert__error">
-                    Verifique o formulário
-                </p>                
-            {% endif %} 
-            {% if messages %} 
-                {% for messagem in messages %}
-                    <p class="alert__success" role="alert">
-                        {{ messagem }}
-                    </p>
-                {% endfor %}
-            {% endif %}
-
-            <form method="post" class="form">
-                {% csrf_token %}
-                {% for field in form %}
-                    <div>
-                        <label>
-                            {% if field.help_text %}
-                                <span class="form__help-text">
-                                    {{ field.help_text}}
-                                </span>
-                            {% endif %}
-                            {{ field.label }}
-                            {% render_field field class="form__input" %}
-                        </label>
-                        {% if field.errors %}
-                            {% for error in field.errors %}
-                                <p class="form_error">
-                                    {{ error }}  
-                                </p>                
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-                <button>
-                    Cadastrar
-                </button>
-            </form>
-
-            <p>Já possui uma conta? <a href="{% url 'users:login' %}">Entre com sua conta</a> </p>
-        </div>
+        <p>Já possui uma conta? <a href="{% url 'users:login' %}">Entre com sua conta</a> </p>
     <main>  
 {% endblock content %}

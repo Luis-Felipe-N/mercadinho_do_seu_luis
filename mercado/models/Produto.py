@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 import locale
 
@@ -61,8 +62,8 @@ class Produto(models.Model):
         auto_now=True,
     )
 
-    def get_absolute_url(self):
-        return '/produto/%i/' % self.pk
+    def get_absolute_url(self, **kwargs):
+        return reverse('mercado:produto', kwargs={'id': self.id})
     
 
     def get_preco_formatado(self, *args, **kwargs):

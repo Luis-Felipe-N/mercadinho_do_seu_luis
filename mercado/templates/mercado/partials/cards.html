@@ -2,6 +2,7 @@
 
 <div class="card">
     <a href="{{ produto.get_absolute_url }}">
+        {% block edit %}{% endblock edit %}
         <div class="card__cover">
             {% if produto.com_desconto is True %}
                 <span class="card__desconto">

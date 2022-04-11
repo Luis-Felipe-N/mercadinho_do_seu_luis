@@ -1,6 +1,7 @@
 .card {
     max-width: 15rem;
     width: 100%;
+    position: relative;
 }
 
 .card__cover {
@@ -48,4 +49,19 @@
 
 .card__desconto svg {
     width: 15px;
+}
+
+.card .editar_produto {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    color: var(--color-white);
+    padding: .1rem .5rem;
+    border-radius: .7rem;
+    background-color: var(--color-primary);
+    font-size: .8rem;
 }
