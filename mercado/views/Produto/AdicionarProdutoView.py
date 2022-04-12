@@ -25,7 +25,3 @@ class AdicionarProdutoView(LoginRequiredMixin, CreateView):
 
         context["titulo_da_pagina"] = "Adicionar produto"
         return context
-    
-    # def get_success_url(self):
-    #     mess
-    #     return redirect

@@ -5,14 +5,14 @@
     <main class="produto">
     <div class="produto__layout">
         <div class="produto__layout_imgs">
-            <div class="list__img">
-                <ul>
-                    <li class="center">
-                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
-                    </li>
+                {% comment %} <div class="list__img">
+                    <ul>
+                        <li class="center">
+                            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                        </li>
 
-                </ul>
-            </div>
+                    </ul>
+                </div> {% endcomment %}
             <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
         </div>
         <div class="produto__layout_info">
@@ -23,7 +23,12 @@
             <div class="info__price">
                 <div>
                     <h2>Preço</h2>
-                    <h1><span>R$</span> {{ produto.preco }}</h1>
+                    {% if produto.com_desconto is True %}
+                        <h3 class="card__info_price_old">R$ {{ produto.get_preco_formatado }}</h3>
+                        <h1 class="card__info_price">R$ {{ produto.get_preco_com_desconto }}</h1>
+                    {% else %}
+                        <h1><span>R$</span> {{ produto.preco }}</h1>
+                    {% endif %}
                 </div>
                 <div>
                     <span>Vendido por: </span>
