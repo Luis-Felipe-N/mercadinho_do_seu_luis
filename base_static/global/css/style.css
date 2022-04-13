@@ -8,6 +8,7 @@
 @import url("./pages/form-produto.css");
 
 /* Componentes */
-@import url("./components/header.css");
+@import url("./components/cabecalho.css");
 @import url("./components/card.css");
 @import url("./components/titulo.css");
+@import url("./components/lista-cards.css");
