@@ -47,6 +47,8 @@
                             {% endif %}
                             
                             {% render_field field placeholder=field.help_text %}
+
+                            {{ field.value.help_text }}
                             
                             {% if field.name == 'com_desconto' %}
                             <span class="toggle"></span>

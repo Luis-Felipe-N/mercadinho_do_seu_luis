@@ -4,3 +4,5 @@ from mercado.views.Produto.CategoriaProdutoView import CategoriaProdutoView
 from mercado.views.Produto.AdicionarProdutoView import AdicionarProdutoView
 from mercado.views.Produto.EditarProdutoView import EditarProdutoView
 from mercado.views.Produto.MeusProdutoView import MeusProdutoView
+
+from mercado.views.CarrinhoView import CarrinhoView

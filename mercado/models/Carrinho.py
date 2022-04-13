@@ -1,7 +1,7 @@
 from django.db import models
 
 class Carrinho(models.Model):
-    user = models.ForeignKey(
+    usuario = models.ForeignKey(
         'users.Usuario',
         on_delete=models.CASCADE
     )
@@ -17,4 +17,4 @@ class Carrinho(models.Model):
     )
 
     def __str__(self):
-        return self.produto__nome
+        return self.produto.nome
