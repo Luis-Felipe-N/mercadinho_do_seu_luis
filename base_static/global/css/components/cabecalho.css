@@ -56,32 +56,72 @@
     font-size: 1rem;
     display: flex;
     gap: 1rem;
+    position: relative;
 }
-
-.cabecalho__user_btns .conta, .cabecalho__user_btns .conta-sair {
-     display: none;
- }
 
 .cabecalho__user .btn_white {
     color: var(--color-primary);
 }
 
-.cabecalho__user .btn-user {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    text-transform: capitalize;
+.cabecalho__user .btn-user, .cabecalho__user .btn-carrinho {
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
     background-color: var(--color-primary-light);
     color: var(--color-secondary);
     transition: .2s;
+    display: grid;
+    place-items: center;
+}
+
+.cabecalho__user .btn-user:hover, .cabecalho__user .btn-carrinho:hover {
+    box-shadow: 0 0 0 2px var(--color-secondary);
 }
 
 .cabecalho__user .cabecalho__user_btns {
-    display: flex;
-    /* align-items: center; */
-    gap: .5rem;
+    display: none;
 }
+
+.cabecalho__user_btns.active {
+    background-color: var(--color-primary);
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 200px;
+    position: absolute;
+    z-index: 2;
+    top: 3rem;
+    right: 0;
+    border-radius: 5px;
+    animation: toDown .2s ease-out;
+}
+
+.cabecalho__user_btns.active .btn {
+    margin: 0 1rem;
+}
+
+.cabecalho__user_btns .conta {
+    width: 100%;
+    padding: 1rem 1rem .5rem;
+    text-align: start;
+    border-bottom: 2px solid var(--color-primary-light);
+}
+
+.cabecalho__user_btns .conta-sair {
+    padding: 0 0 1rem;
+    width: 100%;
+}
+
+.cabecalho__user .cabecalho__user_btns .conta-sair a {
+    color: var(--color-red);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+
 
 .cabecalho__categorias {
     padding: 1rem 0;
@@ -122,73 +162,6 @@
 
 @media (max-width:780px) {
 
-    .cabecalho .cabecalho__container-top .cabecalho__user {
-        position: relative;
-    }
-    .cabecalho .cabecalho__container-top .cabecalho__user_btns {
-        display: none;
-    }
-
-    .cabecalho .cabecalho__container-top .btn-user {
-        border-radius: 100%;
-        width: 2.5rem;
-        height: 2.5rem;
-        padding: 0;
-        background-color: var(--color-primary-light);
-        color: var(--color-secondary);
-        transition: .2s;
-    }
-
-    .cabecalho .cabecalho__container-top .btn-user:hover {
-        box-shadow: 0 0 0 2px var(--color-secondary);
-        /* background-color: red; */
-    }
-
-    .cabecalho .cabecalho__container-top .btn-user span {
-        display: none;
-    }
-
-    .cabecalho .cabecalho__container-top .cabecalho__user_btns.active {
-        background-color: var(--color-primary);
-        box-shadow: 0 0 40px 20px rgba(0, 0, 0, .1);
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 200px;
-        position: absolute;
-        z-index: 2;
-        top: 3rem;
-        right: 0;
-        border-radius: 5px;
-        animation: toDown .2s ease-out;
-    }
-
-    .cabecalho .cabecalho__container-top .cabecalho__user_btns.active .btn {
-        margin: 0 1rem;
-    }
-
-    .cabecalho .cabecalho__container-top .cabecalho__user_btns .conta {
-        width: 100%;
-        padding: 1rem 1rem .5rem;
-        text-align: start;
-        border-bottom: 2px solid var(--color-primary-light);
-    }
-
-    .cabecalho__user_btns .conta, .cabecalho__user_btns .conta-sair {
-        display: block;
-    }
-
-    .cabecalho .cabecalho__container-top .cabecalho__user_btns .conta-sair {
-        padding: 0 0 1rem;
-        width: 100%;
-    }
-    
-    .cabecalho .cabecalho__container-top .cabecalho__user_btns .conta-sair a {
-        color: var(--color-red);
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
 }
 
 @keyframes toDown {
