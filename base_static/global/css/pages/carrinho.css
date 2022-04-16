@@ -1,0 +1,64 @@
+.carrinho {
+    display: grid;
+    margin: 1rem 0;
+}
+
+.carrinho h2, .carrinho h3, .carrinho h4 {
+    color: rgba(0, 0, 0, .8);
+}
+
+.carrinho__cards {
+
+}
+
+.carrinho__card {
+    display: flex;
+    gap: 2rem;
+}
+
+.carrinho__card_img {
+    max-width: 14rem;
+}
+
+.carrinho__card_img img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.carrinho__card_info {
+    max-width: 20rem;
+}
+
+.carrinho__card_info h1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    color: rgba(0, 0, 0, .8);
+}
+
+.carrinho__card_info .preco_antigo {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.carrinho__card_info .preco {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.carrinho__card_quant {
+    text-align: center;
+}
+
+.carrinho__card_quant > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.carrinho__card_preco {
+    
+}

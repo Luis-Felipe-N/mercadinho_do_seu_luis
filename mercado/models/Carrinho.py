@@ -16,5 +16,12 @@ class Carrinho(models.Model):
         on_delete=models.CASCADE
     )
 
+    quantidade = models.IntegerField(
+        verbose_name="Quantidade",
+        default=1,
+        blank=False,
+        null=False
+    )
+
     def __str__(self):
         return self.produto.nome
