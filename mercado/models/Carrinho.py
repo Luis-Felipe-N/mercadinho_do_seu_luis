@@ -1,3 +1,4 @@
+from hashlib import blake2s
 from django.db import models
 
 class Carrinho(models.Model):
@@ -7,7 +8,8 @@ class Carrinho(models.Model):
     )
 
     data_criacao = models.DateTimeField(
-        auto_created=True,
+        auto_now_add=True,
+        # auto_created=True,
         verbose_name="Data de criação"
     )
 
@@ -22,6 +24,23 @@ class Carrinho(models.Model):
         blank=False,
         null=False
     )
+
+    # total = models.FloatField(
+    #     verbose_name="Valor total do carrinho",
+    #     null=False,
+    #     blank=False
+    # )
+
+    def get_preco_total_produto(self):
+        if self.produto.com_desconto is True:
+            desconto_em_reais = self.produto.preco * (self.produto.desconto / 100)
+            preco_produto = self.produto.preco - desconto_em_reais
+        else:
+            preco_produto = self.produto.preco
+
+        preco_produto_final = preco_produto * self.quantidade
+
+        return self.produto.get_preco_formatado(preco_produto_final)
 
     def __str__(self):
         return self.produto.nome

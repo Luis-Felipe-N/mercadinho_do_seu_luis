@@ -16,10 +16,10 @@
                 <div>
                     <h2>Preço</h2>
                     {% if produto.com_desconto is True %}
-                        <h3 class="card__info_price_old">R$ {{ produto.get_preco_formatado }}</h3>
+                        <h3 class="card__info_price_old">R$ {{ produto.get_preco }}</h3>
                         <h1 class="card__info_price">R$ {{ produto.get_preco_com_desconto }}</h1>
                     {% else %}
-                        <h1><span>R$</span> {{ produto.preco }}</h1>
+                        <h1><span>R$</span> {{ produto.get_preco }}</h1>
                     {% endif %}
                 </div>
                 <div>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="info__btns">
-                <a href="" class="btn_white">Adicionar ao carrinho</a>
+                <a href="{% url 'mercado:adicionar-carrinho' produto_id=produto.id %}" class="btn_white">Adicionar ao carrinho</a>
                 <a href="" class="btn_green">Comprar agora</a>
             </div>
         </div>

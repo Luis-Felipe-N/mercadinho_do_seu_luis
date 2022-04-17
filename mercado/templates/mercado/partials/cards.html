@@ -16,10 +16,10 @@
             <h3 class="card__info_title">{{ produto.nome }}</h3>
 
             {% if produto.com_desconto is True %}
-                <h6 class="card__info_price_old">R$ {{ produto.get_preco_formatado }}</h6>
+                <h6 class="card__info_price_old">R$ {{ produto.get_preco }}</h6>
                 <h3 class="card__info_price">R$ {{ produto.get_preco_com_desconto }}</h3>
             {% else %}
-                <h3 class="card__info_price">R$ {{ produto.get_preco_formatado }}</h3>
+                <h3 class="card__info_price">R$ {{ produto.get_preco }}</h3>
             {% endif %}
         </div>
     </a>

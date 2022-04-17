@@ -1,7 +1,12 @@
+from re import template
+from django.shortcuts import redirect
+from django.views import View
 from django.views.generic.list import ListView
+from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from mercado.models.Carrinho import Carrinho
+from mercado.models.Produto import Produto
 
 
 class CarrinhoView(LoginRequiredMixin, ListView):
@@ -10,8 +15,6 @@ class CarrinhoView(LoginRequiredMixin, ListView):
     contect_object_name = 'produtos'
 
     def get_queryset(self):
-        print(Carrinho.objects.all(), super().get_queryset().filter(usuario__id=self.request.user.id))
-
         return super().get_queryset().filter(usuario__id=self.request.user.id)
 
     def get_context_data(self, **kwargs):
@@ -19,3 +22,37 @@ class CarrinhoView(LoginRequiredMixin, ListView):
 
         context["titulo_da_pagina"] = "Carrinho"
         return context
+
+class AddCarrinhoView(LoginRequiredMixin, View):
+    model = Carrinho
+    success_url = 'mercado:home'
+
+    def get(self, request, produto_id):
+        produto = Produto.objects.get(id=produto_id)
+        usuario = request.user
+
+        carrinho = Carrinho.objects.get_or_create(usuario=usuario, produto=produto)
+        print(request)
+
+        return redirect('mercado:carrinho')
+
+    def post(self, request, produto_id):
+        produto = Produto.objects.get(id=produto_id)
+        usuario = request.user
+
+        Carrinho.objects.create(usuario=usuario, produto=produto)
+
+        return redirect('mercado:carrinho')
+
+class AddCarrinhoView(LoginRequiredMixin, View):
+    model = Carrinho
+    success_url = 'mercado:home'
+
+    def get(self, request, carrinho_id):
+        carrinho = Carrinho.objects.get()
+
+        carrinho = Carrinho.objects.get_or_create(usuario=usuario, produto=produto)
+        print(request)
+
+        return redirect('mercado:carrinho')
+

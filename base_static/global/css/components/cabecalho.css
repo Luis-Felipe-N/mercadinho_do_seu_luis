@@ -89,7 +89,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 200px;
+    /* width: 200px; */
     position: absolute;
     z-index: 2;
     top: 3rem;
@@ -98,8 +98,11 @@
     animation: toDown .2s ease-out;
 }
 
-.cabecalho__user_btns.active .btn {
-    margin: 0 1rem;
+.cabecalho__user_btns-redirecionar {
+    padding: 0 1rem;
+}
+.cabecalho__user_btns-redirecionar a:first-child {
+    margin-bottom: 1rem;
 }
 
 .cabecalho__user_btns .conta {

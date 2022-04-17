@@ -12,5 +12,7 @@ urlpatterns = [
     # path('produto/delete/<int:id>', DeleteProdutoView.as_view(), name="delete-produto")
     path('product/<int:id>/', ProdutoView.as_view(), name="produto"),
 
-    path('carrinho/', CarrinhoView.as_view(), name="carrinho")
+    path('carrinho/', CarrinhoView.as_view(), name="carrinho"),
+    path('carrinho/adicionar/<int:produto_id>', AddCarrinhoView.as_view(), name="adicionar-carrinho"),
+    path('carrinho/remover/<int:carrinho_id>', AddCarrinhoView.as_view(), name="remover-carrinho")
 ]

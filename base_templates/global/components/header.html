@@ -24,14 +24,16 @@
                     <div class="conta">
                         <span>{{ user.first_name  }}</span>
                     </div>
-                    {% if user.vendedor.id %}
-                        <a class="btn_white btn_hover btn" href="{% url 'mercado:adicionar-produto'  %}">Adicionar produto</a>
-                        <a class="btn_green btn_hover btn" href="{% url 'mercado:meus-produtos' %}">Meus Produtos</a>
-                        {% else %}
-                        <a class="btn_white btn_hover btn" href="{% url 'users:register-vendedor' %}">
-                            Virar vendendor
-                        </a>
-                    {% endif %}
+                    <div class="cabecalho__user_btns-redirecionar">
+                        {% if user.vendedor.id %}
+                            <a class="btn_white btn_hover btn" href="{% url 'mercado:adicionar-produto'  %}">Adicionar produto</a>
+                            <a class="btn_green btn_hover btn" href="{% url 'mercado:meus-produtos' %}">Meus Produtos</a>
+                            {% else %}
+                            <a class="btn_white btn_hover btn" href="{% url 'users:register-vendedor' %}">
+                                Virar vendendor
+                            </a>
+                        {% endif %}
+                    </div>
                     <div class="conta-sair">
                         <a href="">Sair</a>
                     </div>
