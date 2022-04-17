@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'INSECURE')
 
-DEBUG = True if os.environ.get('DEBUG') == '1' else False
+DEBUG = True if os.getenv('DEBUG') == '1' else False
 
 ALLOWED_HOSTS = parse_comma_sep_str_to_list(
     get_env_variable('ALLOWED_HOSTS')
@@ -82,10 +82,15 @@ WSGI_APPLICATION = 'mercadinho_do_seu_luis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 

@@ -13,6 +13,7 @@ class CarrinhoView(LoginRequiredMixin, ListView):
     template_name = 'mercado/pages/carrinho.html'
     model = Carrinho
     contect_object_name = 'produtos'
+    ordering = ['-id']
 
     def get_queryset(self):
         return super().get_queryset().filter(usuario__id=self.request.user.id)
@@ -44,14 +45,14 @@ class AddCarrinhoView(LoginRequiredMixin, View):
 
         return redirect('mercado:carrinho')
 
-class AddCarrinhoView(LoginRequiredMixin, View):
+class RemoverCarrinhoView(LoginRequiredMixin, View):
     model = Carrinho
     success_url = 'mercado:home'
 
     def get(self, request, carrinho_id):
-        carrinho = Carrinho.objects.get()
+        carrinho = Carrinho.objects.get(id=carrinho_id, usuario=self.request.user)
 
-        carrinho = Carrinho.objects.get_or_create(usuario=usuario, produto=produto)
+        carrinho.delete()
         print(request)
 
         return redirect('mercado:carrinho')
