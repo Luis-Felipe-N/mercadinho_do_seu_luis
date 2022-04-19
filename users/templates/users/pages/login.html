@@ -1,0 +1,14 @@
+{% extends 'global/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    <main class="users center">
+        <div class="users__container">
+            {% include "users/partials/form.html" %}
+
+            <p>Não possui uma conta? <a href="{% url 'users:register' %}">Crie uma conta</a> </p>
+        </div>
+    <main>  
+{% endblock content %}

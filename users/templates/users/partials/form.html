@@ -1,44 +1,38 @@
-<div class="users__container">
-    <h2>Cadastrar no mercadinho{{ titulo_da_pagina }}</h2>
+{% load widget_tweaks %}
 
-    {% if form.errors %}
-        <p class="alert__error">
-            Verifique o formulário
-        </p>                
-    {% endif %} 
-    {% if messages %} 
-        {% for messagem in messages %}
-            <p class="alert__success" role="alert">
-                {{ messagem }}
-            </p>
-        {% endfor %}
-    {% endif %}
 
-    <form method="post" class="form">
-        {% csrf_token %}
-        {% for field in form %}
-            <div>
-                <label>
-                    {% if field.help_text %}
-                        <span class="form__help-text">
-                            {{ field.help_text}}
-                        </span>
-                    {% endif %}
-                    {{ field.label }}
-                    {% render_field field class="form__input" %}
-                </label>
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <p class="form_error">
-                            {{ error }}  
-                        </p>                
-                    {% endfor %}
+<h2>{{ titulo_da_pagina }}</h2>
+
+{% if form.errors %}
+    <p class="alert__error">
+        Verifique o formulário
+    </p>                
+{% endif %} 
+{% include 'global/components/messages.html' %}
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {% for field in form %}
+        <div>
+            <label>
+                {% if field.help_text %}
+                    <span class="form__help-text">
+                        {{ field.help_text}}
+                    </span>
                 {% endif %}
-            </div>
-        {% endfor %}
-        <button>
-            Cadastrar
-        </button>
-    </form>
-    
-</div>
+                {{ field.label }}
+                {% render_field field class="form__input" %}
+            </label>
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p class="form_error">
+                        {{ error }}  
+                    </p>                
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button>
+        Cadastrar
+    </button>
+</form>
