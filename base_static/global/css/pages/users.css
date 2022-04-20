@@ -1,6 +1,7 @@
 .users {
     min-height: 100vh;
     background-color: var(--color-primary);
+    padding: 5%;
 }
 
 .users__container {

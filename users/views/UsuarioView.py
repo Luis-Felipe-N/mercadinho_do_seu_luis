@@ -1,3 +1,5 @@
+from multiprocessing import context
+from django.forms import ValidationError
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
@@ -12,7 +14,7 @@ from users.models.Usuario import Usuario
 # Redirecionar para home que estiver logado
 
 class LoginView(LoginViewClass):
-    template_name = './users/login.html'
+    template_name = 'users/pages/login.html'
 
     def dispatch(self, request, *args, **kwargs):
 
@@ -21,11 +23,14 @@ class LoginView(LoginViewClass):
             return redirect('mercado:home')
         return super().dispatch(request, *args, **kwargs)
 
-    def get_template(self, *args, **kwargs):
-        form = LoginForm()
+    def get_template(self, form=None, *args, **kwargs):
+        
+        if form is None:
+            form = LoginForm()
 
         context = {
-            'form': form
+            'form': form,
+            "titulo_da_pagina": "Entrar no mercadinho"
         }
         
         return render(self.request, self.template_name, context)
@@ -35,6 +40,11 @@ class LoginView(LoginViewClass):
 
     def post(self, request):
         form = LoginForm(request.POST)
+
+        context = {
+            "form": form,
+            "titulo_da_pagina": "Entrar no mercadinho"
+        }
 
         if form.is_valid():
             username = request.POST.get('username','')
@@ -47,18 +57,20 @@ class LoginView(LoginViewClass):
                 messages.success(request, 'Login feito com sucesso')
                 return redirect('mercado:home')
             else:
-                return render(self.request, self.template_name, context={"form": form})
+                messages.error(request, "Usuário ou senha inválida")
+                return self.get_template(form)
         else:
-            return render(self.request, self.template_name, context={"form": form})
+            return self.get_template(form)
 
 
 class RegisterUsuarioView(View):
-    template_name = './users/register.html'
+    template_name = 'users/pages/register.html'
 
     def get_template(self, form, *args, **kwargs):
 
         context = {
-            'form': form
+            'form': form,
+            'titulo_da_pagina': "Cadastar no mercadinho"
         }
         
         return render(self.request, self.template_name, context)

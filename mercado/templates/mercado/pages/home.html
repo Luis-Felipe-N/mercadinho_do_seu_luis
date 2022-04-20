@@ -6,13 +6,7 @@
     {% include 'global/components/header.html' %}
     <main class="home">
         <div class="container">
-            {% if messages %} 
-                {% for mensagem in messages %}
-                    <p class="alert__{{ mensagem.tags }}" role="alert">
-                        {{ mensagem }}
-                    </p>
-                {% endfor %}
-            {% endif %}
+            {% include 'global/components/messages.html' %}
 
             <div class="lista-cards">
                 {% for produto in produtos %}

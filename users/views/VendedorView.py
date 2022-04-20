@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
@@ -9,13 +10,13 @@ from users.models.Usuario import Usuario
 from users.models.Vendedor import Vendedor
 
 class RegisterVendedorView(LoginRequiredMixin ,CreateView):
-    template_name = 'users/register-vendedor.html'
+    template_name = 'users/pages/register-vendedor.html'
     model = Vendedor
     form_class= RegisterVendedorForm
     success_url = 'mercado:home'
 
     def dispatch(self, request, *args, **kwargs):
-        usuario_vendedor = self.request.user.vendedor is not None
+        usuario_vendedor = self.request.user.is_vendedor
         if usuario_vendedor:
             messages.error(self.request, 'Usuário já é vendedor')
             return redirect('mercado:home')
@@ -23,12 +24,19 @@ class RegisterVendedorView(LoginRequiredMixin ,CreateView):
     
 
     def form_valid(self, form):
-        self.request.user.is_vendedor = True
+        # self.request.user.is_vendedor = True
+        usuario = Usuario.objects.get(id=self.request.user.id)
+        usuario.is_vendedor = True
         form.instance.username = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
         messages.success(self.request, 'Agora você é um vendedor')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo_da_pagina'] = "Cadastrar vendedor"
+        return context
         
 
     # def get_template(self, form):
