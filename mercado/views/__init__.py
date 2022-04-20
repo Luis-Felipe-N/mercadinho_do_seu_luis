@@ -8,3 +8,5 @@ from mercado.views.Produto.MeusProdutoView import MeusProdutoView
 from mercado.views.CarrinhoView import CarrinhoView
 from mercado.views.CarrinhoView import AddCarrinhoView
 from mercado.views.CarrinhoView import RemoverCarrinhoView
+
+from mercado.views.PesquisaView import PesquisaView

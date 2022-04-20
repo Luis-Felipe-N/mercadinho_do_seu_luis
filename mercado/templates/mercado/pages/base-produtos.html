@@ -4,7 +4,12 @@
     {% include 'global/components/header.html' %}
 
     <main class="base-produtos container">
-        {% block conteudo %}{% endblock conteudo %}
+        <h1>{{ titulo_da_pagina }}</h1>
+        <div class="produtos__cards">
+            {% for produto in produtos %}
+                {% include '../partials/cards.html' %}
+            {% endfor %}
+        </div>
     </main>
     
 {% endblock content %}

@@ -9,6 +9,8 @@ from mercado.models.Carrinho import Carrinho
 from mercado.models.Produto import Produto
 
 
+# ver forma melhor de criar o Carrinho
+
 class CarrinhoView(LoginRequiredMixin, ListView):
     template_name = 'mercado/pages/carrinho.html'
     model = Carrinho

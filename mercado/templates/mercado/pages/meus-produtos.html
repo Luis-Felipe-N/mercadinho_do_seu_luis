@@ -1,12 +1,15 @@
-{% extends './base-produtos.html' %}
+{% extends 'global/base.html' %}
 
-{% block title %}{{ titulo_da_pagina }}{% endblock title %}
+{% block content %}
+    {% include 'global/components/header.html' %}
 
-{% block conteudo %}
-    {% include '../partials/titulo.html' %}
-    <div class="categorias__cards lista-cards">
-        {% for produto in produtos %}
-            {% include '../partials/meus-produto-cards.html' %}
-        {% endfor %}
-    </div>
-{% endblock conteudo %}
+    <main class="base-produtos container">
+        <h1>{{ titulo_da_pagina }}</h1>
+        <div class="produtos__cards">
+            {% for produto in produtos %}
+                {% include '../partials/meus-produto-cards.html' %}
+            {% endfor %}
+        </div>
+    </main>
+    
+{% endblock content %}  
