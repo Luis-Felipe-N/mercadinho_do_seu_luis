@@ -25,12 +25,6 @@ class Carrinho(models.Model):
         null=False
     )
 
-    # total = models.FloatField(
-    #     verbose_name="Valor total do carrinho",
-    #     null=False,
-    #     blank=False
-    # )
-
     def get_preco_total_produto(self):
         if self.produto.com_desconto is True:
             desconto_em_reais = self.produto.preco * (self.produto.desconto / 100)

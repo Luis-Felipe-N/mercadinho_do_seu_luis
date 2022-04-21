@@ -23,16 +23,3 @@ class CategoriaProdutoView(ListView):
         context["titulo_da_pagina"] = titulo_da_pagina
 
         return context
-
-    # def get(self, request, slug):
-    #     categoria = get_object_or_404(Categoria, slug=slug)
-
-    #     produtos = categoria.produto_set.all()
-    #     categoria_nome = categoria.nome
-
-    #     context = {
-    #         "produtos": produtos,
-    #         "categoria_nome": categoria_nome
-    #     }
-
-    #     return render(request, 'mercado/pages/categoria.html', context)
