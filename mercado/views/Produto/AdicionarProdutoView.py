@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView
 from mercado.forms.ProdutoForm import ProdutoForm
@@ -11,9 +12,14 @@ class AdicionarProdutoView(LoginRequiredMixin, CreateView):
     model = Produto
     form_class = ProdutoForm
     
+    def dispatch(self, request, *args, **kwargs):
+        print(request.user.vendedor)
+        if not request.user.vendedor:
+            return redirect('mercado:registrar-produto')
+        return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('mercado:home')
+        return reverse(reverse('mercado:home'))
 
     def form_valid(self, form):
         form.instance.vendedor = self.request.user.vendedor

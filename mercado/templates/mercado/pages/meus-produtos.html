@@ -8,6 +8,8 @@
         <div class="produtos__cards">
             {% for produto in produtos %}
                 {% include '../partials/meus-produto-cards.html' %}
+            {% empty %}
+                <h1>Você não cadastrou nenhum produto</h1>
             {% endfor %}
         </div>
     </main>

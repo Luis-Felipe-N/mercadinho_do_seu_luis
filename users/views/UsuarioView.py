@@ -3,10 +3,11 @@ from django.forms import ValidationError
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from users.forms.UsuarioForm import RegisterUsuarioForm, LoginForm
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView as LoginViewClass
 
 from users.models.Usuario import Usuario
@@ -41,11 +42,6 @@ class LoginView(LoginViewClass):
     def post(self, request):
         form = LoginForm(request.POST)
 
-        context = {
-            "form": form,
-            "titulo_da_pagina": "Entrar no mercadinho"
-        }
-
         if form.is_valid():
             username = request.POST.get('username','')
             password = request.POST.get('password','')
@@ -55,13 +51,19 @@ class LoginView(LoginViewClass):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Login feito com sucesso')
-                return redirect('mercado:home')
+                return redirect(reverse('mercado:home'))
             else:
                 messages.error(request, "Usuário ou senha inválida")
                 return self.get_template(form)
         else:
             return self.get_template(form)
 
+class LogoutView(LoginRequiredMixin, View):
+    
+    def get(self, request):
+        logout(request)
+
+        return redirect(reverse('mercado:home'))
 
 class RegisterUsuarioView(View):
     template_name = 'users/pages/register.html'
@@ -88,7 +90,7 @@ class RegisterUsuarioView(View):
             usuario.set_password(usuario.password)
             usuario.save()
             messages.success(request, 'Conta criada com sucesso')
-            return redirect('users:login')
+            return redirect(reverse('users:login'))
         else:
             return self.get_template(form)
 
