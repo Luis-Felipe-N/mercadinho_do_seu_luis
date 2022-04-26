@@ -3,25 +3,19 @@ from django.core.exceptions import ValidationError
 
 from users.models.Usuario import Usuario
 
-def strong_password(password):
-    if len(password) < 8:
-        raise ValidationError(
-            'Sua senha deve haver 8 ou mais caracteres',
-            code="invalid"
-        )
 
 class RegisterUsuarioForm(forms.ModelForm):
 
-    # password = forms.PasswordInput(
-    #     required=True,
-    #     widget=forms.PasswordInput(),
-    #     validators=[strong_password],
-    #     error_messages = {
-    #         'required': 'Senha obrigatória',
-    #         'invalid': 'Sua senha deve haver 8 ou mais caracteres',
-    #         'noconfirm': 'As senhas não coincidem'
-    #     }
-    # )
+    password = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(),
+        
+        error_messages = {
+            'required': 'Senha obrigatória',
+            'invalid': 'Sua senha deve haver 8 ou mais caracteres',
+            'noconfirm': 'As senhas não coincidem'
+        }
+    )
 
     confirmar_senha = forms.CharField(
         required=True,
@@ -49,16 +43,14 @@ class RegisterUsuarioForm(forms.ModelForm):
         senha_primaria = cleaned_data.get("password")
         senha_secondaria = cleaned_data.get("confirmar_senha")
 
-        if senha_primaria != senha_secondaria   :
+        if senha_primaria != senha_secondaria:
 
             self.add_error('password', 'As senhas não coincidem')
 
-            raise ValidationError(
-                'As senhas não coincidem',
-                code='noconfirm'
-            )
+        if len(senha_primaria) < 8:
+            self.add_error('password', 'Senha muito curta')
 
-        return super().clean()
+        return cleaned_data
 
 class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):

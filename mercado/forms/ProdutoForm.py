@@ -55,3 +55,20 @@ class ProdutoForm(forms.ModelForm):
             'imagem', 'categoria',
             'desconto', 'com_desconto'
         ]
+
+    def clean(self):
+
+        cleaned_data = super().clean()
+
+        com_desconto = cleaned_data.get('com_desconto')
+        quant_desconto = cleaned_data.get('desconto')
+        if com_desconto is True:
+
+            if quant_desconto is None:
+                self.add_error('desconto', 'Informe a quantidade de desconto')
+
+            if quant_desconto < 0 or quant_desconto > 100:
+                self.add_error('desconto', 'Insira um valor entre 0 à 100')
+
+
+        return super().clean()

@@ -76,14 +76,17 @@ class Produto(models.Model):
 
     def get_quantidade_desconto(self, *args, **kwargs):
         desconto = self.desconto
-        return f'{float(desconto)}%'
+        return f'{int(desconto)}%'
 
     def get_preco_com_desconto(self, *args, **kwargs):
-        desconto_em_reais = self.preco * (self.desconto / 100)
+        if self.desconto is None:
+            preco_formatado = self.get_preco(   )
+        else:
+            desconto_em_reais = self.preco * (self.desconto / 100)
 
-        preco_desconto = self.preco - desconto_em_reais
+            preco_desconto = self.preco - desconto_em_reais
 
-        preco_formatado = self.get_preco_formatado(preco_desconto)
+            preco_formatado = self.get_preco_formatado(preco_desconto)
 
         return preco_formatado
 
