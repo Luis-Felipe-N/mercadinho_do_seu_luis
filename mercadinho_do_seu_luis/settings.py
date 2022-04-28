@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'INSECURE')
 
-DEBUG = True if os.environ.get('DEBUG') == '1' else False
+DEBUG = False
 
 ALLOWED_HOSTS = parse_comma_sep_str_to_list(
     get_env_variable('ALLOWED_HOSTS')
@@ -151,41 +151,25 @@ LOGIN_REDIRECT_URL = 'mercado:home'
 AUTH_USER_MODEL = 'users.Usuario'
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'default': {
-#             # 'format': '[%(asctime)s] [%(levelname)s] [%(name)s] [%(threadName)s] %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'console': {
-#             'level': 'INFO',
-#             'filters': ['require_debug_true'],
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'default'
-#         },
-#         'mail_admins': {
-#             'level': 'ERROR',
-#             'class': 'django.utils.log.AdminEmailHandler',
-#             'filters': ['special']
-#         }
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['console'],
-#             'propagate': True,
-#         },
-#         'django.request': {
-#             'handlers': ['mail_admins'],
-#             'level': 'ERROR',
-#             'propagate': False,
-#         },
-#         'myproject.custom': {
-#             'handlers': ['console', 'mail_admins'],
-#             'level': 'INFO',
-#             'filters': ['special']
-#         }
-#     }
-# }
+import os
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+}
