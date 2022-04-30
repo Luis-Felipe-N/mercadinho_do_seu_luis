@@ -1,7 +1,7 @@
-from multiprocessing import context
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import CreateView
 from users.forms.VendedorForm import RegisterVendedorForm
 from users.models.Usuario import Usuario
@@ -13,18 +13,17 @@ class RegisterVendedorView(LoginRequiredMixin ,CreateView):
     template_name = 'users/pages/register-vendedor.html'
     model = Vendedor
     form_class= RegisterVendedorForm
-    success_url = 'mercado:home'
+    # success_url = redirect('mercado:home')
 
-    def dispatch(self, request, *args, **kwargs):
-        usuario_vendedor = self.request.user.is_vendedor
-        if usuario_vendedor:
-            messages.error(self.request, 'Usuário já é vendedor')
-            return redirect('mercado:home')
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     usuario_vendedor = hasattr(self.request.user, '')
+    #     if usuario_vendedor:
+    #         messages.error(self.request, 'Usuário já é vendedor')
+    #         return redirect('mercado:home')
+    #     return super().dispatch(request, *args, **kwargs)
     
 
     def form_valid(self, form):
-        # self.request.user.is_vendedor = True
         usuario = Usuario.objects.get(id=self.request.user.id)
         usuario.is_vendedor = True
         form.instance.username = self.request.user
@@ -32,6 +31,7 @@ class RegisterVendedorView(LoginRequiredMixin ,CreateView):
 
     def get_success_url(self):
         messages.success(self.request, 'Agora você é um vendedor')
+        return  redirect(reverse('mercado:home'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

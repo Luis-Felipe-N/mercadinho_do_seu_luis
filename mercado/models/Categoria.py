@@ -1,4 +1,3 @@
-from pickletools import uint1
 from django.db import models
 
 class Categoria(models.Model):

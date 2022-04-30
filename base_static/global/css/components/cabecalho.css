@@ -22,7 +22,8 @@
     border-radius: 5px;
     align-items: center;
     justify-content: space-between;
-    /* over */
+    max-width: 400px;
+    width: 100%;
 }
 
 .cabecalho__search:focus-within {

@@ -1,4 +1,7 @@
+
 {% extends 'global/base.html' %}
+
+{% load static %}
 
 {% block content %}
     {% include 'global/components/header.html' %}
@@ -8,6 +11,10 @@
         <div class="produtos__cards">
             {% for produto in produtos %}
                 {% include '../partials/cards.html' %}
+            {% empty %}
+                <div class="nada-encontrado">
+                    <img src="{% static '/global/image/not-found.png' %}" alt="Cones sinalizando que nada foi encontrado"/> 
+                </div>
             {% endfor %}
         </div>
     </main>
