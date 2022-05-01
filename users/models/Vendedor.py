@@ -37,6 +37,9 @@ class Vendedor(models.Model):
         max_length=11
     )
 
+    def save(self, *args, **kwargs):
+        self.nome_completo = self.username.get_full_name()
+        return super(Vendedor, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Vendedor"

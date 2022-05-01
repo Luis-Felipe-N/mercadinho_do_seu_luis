@@ -27,7 +27,6 @@ class RegisterVendedorForm(forms.ModelForm):
         model = Vendedor
         fields = [
             'nome_loja',
-            'nome_completo',
             'cnpj',
             'endereco',
             'telefone'

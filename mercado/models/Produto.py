@@ -22,8 +22,15 @@ class Produto(models.Model):
     descricao_html = models.TextField(
         verbose_name="Descrição em HTML",
         help_text="Ex: <h1>Este é o melhor produto do mundo</h1>",
-        blank=True
+        blank=True,
+        null=True
     )
+
+    is_descricao_html = models.BooleanField(
+        default=False
+    )
+
+    is_ativo = models.BooleanField(default=False)
 
     preco = models.FloatField(
         verbose_name="Preço",
@@ -61,6 +68,13 @@ class Produto(models.Model):
         verbose_name="Data de criação",
         auto_now=True,
     )
+
+    def save(self, *args, **kwargs):
+        if self.descricao_html:
+            self.is_descricao_html = True
+        else:
+            self.is_ativo = True
+        return super(Produto, self).save(*args, **kwargs)   
 
     def get_absolute_url(self, **kwargs):
         return reverse('mercado:produto', kwargs={'id': self.id})

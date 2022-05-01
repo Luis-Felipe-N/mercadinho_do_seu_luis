@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 @admin.register(Usuario)
-class UsuarioAdmin(UserAdmin):
+class UsuarioAdmin(admin.ModelAdmin):
 
     add_fieldsets = (
         (None, {

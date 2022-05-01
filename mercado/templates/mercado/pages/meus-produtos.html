@@ -4,7 +4,33 @@
     {% include 'global/components/header.html' %}
 
     <main class="base-produtos container">
-        <h1>{{ titulo_da_pagina }}</h1>
+        <h1>Olá, {{ user.get_full_name }}</h1>
+        <div class="dash_meus-produtos">
+            <div class="dash_meus-produtos_todos">
+                <h3>
+                    Produtos cadastrados
+                </h3>
+                <h1>
+                    {{ quantidade_produtos }}
+                </h1>
+            </div>
+            <div class="dash_meus-produtos_ativos">
+                <h3>
+                    Produtos ativos
+                </h3>
+                <h1>
+                    {{ quantidade_produtos_ativos }}
+                </h1>
+            </div>
+            <div class="dash_meus-produtos_desativos">
+                <h3>
+                    Produtos cadastrados
+                </h3>
+                <h1>
+                    {{ quantidade_produtos_desativos }}
+                </h1>
+            </div>
+        </div>
         <div class="produtos__cards">
             {% for produto in produtos %}
                 {% include '../partials/meus-produto-cards.html' %}
@@ -14,4 +40,4 @@
         </div>
     </main>
     
-{% endblock content %}  
+{% endblock content %}      

@@ -25,7 +25,8 @@ class ProdutoForm(forms.ModelForm):
             attrs={
                 'class': 'span-3'
             }
-        )
+        ),
+        required=False
     )
 
     com_desconto = forms.BooleanField(

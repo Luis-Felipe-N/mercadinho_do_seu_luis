@@ -22,7 +22,7 @@
 
 .produto__layout_imgs > img {
     object-fit: contain;
-    max-height: 40rem;
+    max-height: 30rem;
     height: 100%;
     max-width: 30rem;
     width: 100%;
@@ -81,4 +81,10 @@
 .produto__layout_info .info__btns > a {
     box-shadow: 0 0 0 2px var(--color-primary);
     margin-bottom: 1rem;
+}
+
+@media (max-width: 800px) {
+    .produto__layout {
+        flex-direction: column;
+    }
 }

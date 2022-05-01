@@ -13,9 +13,10 @@ class AdicionarProdutoView(LoginRequiredMixin, CreateView):
     form_class = ProdutoForm
     
     def dispatch(self, request, *args, **kwargs):
-        print(request.user.vendedor)
-        if not request.user.vendedor:
-            return redirect('mercado:registrar-produto')
+        print(request.user.is_vendedor)
+        if request.user.is_vendedor is not True:
+            messages.error(request, "Para adicionar um produto você precisa se tornar vendedor")
+            return redirect('users:register-vendedor')
         return super().dispatch(request, *args, **kwargs)
 
 

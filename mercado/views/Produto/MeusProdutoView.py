@@ -11,9 +11,13 @@ class MeusProdutoView(LoginRequiredMixin, ListView):
     context_object_name = 'produtos'
 
     def get_queryset(self):
-        return super().get_queryset().filter(Q(vendedor__id=self.request.user.vendedor.id))
+        return super().get_queryset().filter(Q(vendedor__id=self.request.user.vendedor.id) and Q(is_ativo=True) )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        quantidade_produto = Produto.objects.filter(Q(vendedor__id=self.request.user.vendedor.id))
         context["titulo_da_pagina"] = "Meus Produtos"
+        context["quantidade_produtos_ativos"] = quantidade_produto.filter( Q(is_ativo=True)).count  
+        context["quantidade_produtos_desativos"] = quantidade_produto.filter( Q(is_ativo=False)).count 
+        context["quantidade_produtos"] =quantidade_produto.count  
         return context

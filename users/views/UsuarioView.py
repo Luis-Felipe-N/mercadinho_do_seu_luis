@@ -51,7 +51,7 @@ class LoginView(LoginViewClass):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Login feito com sucesso')
-                return redirect('../mercado/pages/home.html')
+                return redirect(reverse('mercado:home'))
             else:
                 messages.error(request, "Usuário ou senha inválida")
                 return self.get_template(form)

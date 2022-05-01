@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import CreateView
 from users.forms.VendedorForm import RegisterVendedorForm
@@ -31,7 +31,7 @@ class RegisterVendedorView(LoginRequiredMixin ,CreateView):
 
     def get_success_url(self):
         messages.success(self.request, 'Agora você é um vendedor')
-        return  redirect(reverse('mercado:home'))
+        return reverse('mercado:home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

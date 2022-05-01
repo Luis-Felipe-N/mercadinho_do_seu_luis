@@ -12,7 +12,7 @@ class CategoriaProdutoView(ListView):
     
     def get_queryset(self):
         slug_da_categoria = self.kwargs["slug"]
-        qs = Q(categoria__slug=slug_da_categoria)
+        qs = Q(Q(categoria__slug=slug_da_categoria) and Q(is_ativo=True))
         
         return super().get_queryset().filter(qs)    
 

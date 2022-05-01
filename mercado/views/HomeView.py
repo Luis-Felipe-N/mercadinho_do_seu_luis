@@ -10,7 +10,7 @@ class HomeView(ListView):
     model = Produto
     
     def get_queryset(self):
-        return super().get_queryset()
+        return super().get_queryset().filter(is_ativo=True)
 
     # def get_template(self, context):
     #     try:
