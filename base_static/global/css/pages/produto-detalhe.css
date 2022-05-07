@@ -15,7 +15,6 @@
     display: flex;
     gap: .5rem;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     flex: 1;
 }

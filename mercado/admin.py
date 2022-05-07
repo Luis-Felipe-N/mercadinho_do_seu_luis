@@ -7,9 +7,7 @@ admin.site.register(Produto)
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
-    prepopulated_fileds = {
-        "slug": ('nome',)
-    }
+    prepopulated_fields = {"slug": ("nome",)}
 
 @admin.register(Carrinho)
 class CarrinhoAdmin(admin.ModelAdmin):

@@ -12,9 +12,8 @@ class CategoriaProdutoView(ListView):
     
     def get_queryset(self):
         slug_da_categoria = self.kwargs["slug"]
-        qs = Q(Q(categoria__slug=slug_da_categoria) and Q(is_ativo=True))
         
-        return super().get_queryset().filter(qs)    
+        return super().get_queryset().filter(Q(Q(categoria__slug=slug_da_categoria) & Q(is_ativo=True)))    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -29,5 +28,6 @@ class CategoriaProdutoView(ListView):
             titulo_da_pagina = f'Categoria "{slug}" não foi encontrada'
             
         context["titulo_da_pagina"] = titulo_da_pagina
+        context["pesquisa_pagina_atual"] = f'categoria:{slug}'
 
         return context
