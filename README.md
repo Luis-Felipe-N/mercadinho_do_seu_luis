@@ -1,7 +1,7 @@
 
 <h1 align="center">Mercadinho do seu Luis</h1>
 
-Ecommer (Não funcional), criado para aprender mais sobre o framework Django.
+Ecommerce (Não funcional), criado para aprender mais sobre o framework Django.
 
 <p align="center">
   <img  src="https://img.shields.io/github/issues/Luis-Felipe-N/mercadinho_do_seu_luis" alt="issues">
