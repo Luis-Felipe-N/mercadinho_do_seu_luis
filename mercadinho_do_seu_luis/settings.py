@@ -16,13 +16,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'INSECURE')
 
-DEBUG = True if os.getenv('DEBUG') == '1' else False
+DEBUG = True
 
 ALLOWED_HOSTS = parse_comma_sep_str_to_list(
     get_env_variable('ALLOWED_HOSTS')
 )
 
-CSRF_TRUSTED_ORIGINS: list[str] = parse_comma_sep_str_to_list(
+CSRF_TRUSTED_ORIGINS = parse_comma_sep_str_to_list(
     get_env_variable('CSRF_TRUSTED_ORIGINS')
 )
 
@@ -83,16 +83,24 @@ WSGI_APPLICATION = 'mercadinho_do_seu_luis.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('DATABASE_ENGINE'),
+#         'NAME': os.getenv('DATABASE_NAME'),
+#         'USER': os.getenv('DATABASE_USER'),
+#         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+#         'HOST': os.getenv('DATABASE_HOST'),
+#         'PORT': os.getenv('DATABASE_PORT'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DATABASE_ENGINE'),
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation

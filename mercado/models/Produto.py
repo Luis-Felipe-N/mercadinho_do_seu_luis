@@ -1,7 +1,9 @@
+from io import BytesIO
 from django.urls import reverse
 from django.db import models
+from django.core.files.base import ContentFile
 import locale
-
+from PIL import Image
 from mercado.models.Categoria import Categoria
 
 # Create your models here.
@@ -74,6 +76,23 @@ class Produto(models.Model):
             self.is_descricao_html = True
         else:
             self.is_ativo = True
+
+        pil_image_obj = Image.open(self.imagem)
+        pil_image_obj.thumbnail((100, 100), Image.ANTIALIAS)
+
+        new_image_io = BytesIO()
+        pil_image_obj.save(new_image_io, pil_image_obj.format)
+
+        temp_name = self.imagem.name
+        self.imagem.delete(save=False)  
+
+        self.imagem.save(
+            temp_name,
+            content=ContentFile(new_image_io.getvalue()),
+            save=False
+        )
+
+        
         return super(Produto, self).save(*args, **kwargs)   
 
     def get_absolute_url(self, **kwargs):
@@ -103,7 +122,6 @@ class Produto(models.Model):
             preco_formatado = self.get_preco_formatado(preco_desconto)
 
         return preco_formatado
-
 
     def __str__(self):
         return self.nome
